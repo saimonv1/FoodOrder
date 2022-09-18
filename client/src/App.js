@@ -1,11 +1,18 @@
-import Layout from './components/UI/Layout';
+import { Routes, Route } from 'react-router-dom';
+
+import Layout from './components/Layout/Layout';
+import Login from './pages/Authenticate/Login';
+import Register from './pages/Authenticate/Register';
+import City from './pages/City/City';
 
 function App() {
   return (
     <Layout>
-      <div>
-      
-      </div>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/city" element={<City />} />
+      </Routes>
     </Layout>
   );
 }
