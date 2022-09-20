@@ -9,6 +9,7 @@ const Header = (props) => {
         <NavLink to="/">No Hunger</NavLink>
       </div>
       <div className={classes.navigation}>
+        <NavLink className={classes.button} to="/location">Location</NavLink>
         <NavLink className={classes.button} to="/login">Login</NavLink>
         <NavLink className={classes.button} to="/register">Register</NavLink>
       </div>

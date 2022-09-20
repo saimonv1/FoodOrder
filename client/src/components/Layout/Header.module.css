@@ -14,7 +14,7 @@
   font-size: 2rem;
   color: white;
   font-weight: bold;
-  padding: 0 10%;
+  padding-left: 10%;
   justify-content: flex-start;
 }
 
@@ -27,7 +27,7 @@
   align-items: center;
   width: 35%;
   justify-content: flex-end;
-  padding: 1% 10%;
+  padding: 32px 10%;
   gap: 10px;
 }
 
@@ -70,9 +70,7 @@
   border-bottom: 4px solid #216e40;
 }
 
-.button:active{
+.button:active {
   color: white;
   background-color: #216e40;
 }
-
-

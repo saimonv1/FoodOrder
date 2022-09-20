@@ -1,4 +1,4 @@
-.city {
+.location {
   margin: 3rem auto;
   width: 90%;
   max-width: 25rem;
@@ -9,7 +9,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 
-.city h1, h4 {
+.location h1, h4 {
   text-align: center;
   color: white;
 }
