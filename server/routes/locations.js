@@ -51,16 +51,26 @@ router.delete("/:locationId", async (req, res) => {
 
 router.post("/:locationId/addMenu/:menuId", async (req, res) => {
   try {
-    console.log("addMenu start");
     const location = await Location.findById(req.params.locationId);
     const menu = await Menu.findById(req.params.menuId);
-    console.log("addMenu got objects");
 
     location.menus.push(menu);
-    console.log("addMenu pushed");
 
     const savedLocation = await location.save();
-    console.log("addMenu save");
+    res.status(201).json(savedLocation);
+  } catch (err) {
+    res.status(404).json({ message: err });
+  }
+});
+
+router.post("/:locationId/removeMenu/:menuId", async (req, res) => {
+  try {
+    const location = await Location.findById(req.params.locationId);
+    const menu = await Menu.findById(req.params.menuId);
+
+    location.menus.remove(menu);
+
+    const savedLocation = await location.save();
     res.status(201).json(savedLocation);
   } catch (err) {
     res.status(404).json({ message: err });

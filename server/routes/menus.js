@@ -1,13 +1,12 @@
 const express = require("express");
+const Dish = require("../models/Dish");
 const Location = require("../models/Location");
 const Menu = require("../models/Menu");
 const router = express.Router({ mergeParams: true });
 
 router.get("/", async (req, res) => {
   try {
-    const menus = await Location.findById(req.params.locationId).populate(
-      "menus"
-    );
+    const menus = await Menu.find({}).populate("dishes");
     res.status(200).json(menus);
   } catch (err) {
     res.status(404).json({ message: err });
@@ -46,6 +45,34 @@ router.delete("/:menuId", async (req, res) => {
       _id: req.params.menuId,
     });
     res.status(200).json(removedMenu);
+  } catch (err) {
+    res.status(404).json({ message: err });
+  }
+});
+
+router.post("/:menuId/addDish/:dishId", async (req, res) => {
+  try {
+    const menu = await Menu.findById(req.params.menuId);
+    const dish = await Dish.findById(req.params.dishId);
+
+    menu.dishes.push(dish);
+
+    const savedMenu = await menu.save();
+    res.status(201).json(savedMenu);
+  } catch (err) {
+    res.status(404).json({ message: err });
+  }
+});
+
+router.post("/:menuId/removeDish/:dishId", async (req, res) => {
+  try {
+    const menu = await Menu.findById(req.params.menuId);
+    const dish = await Dish.findById(req.params.dishId);
+
+    menu.dishes.remove(dish);
+
+    const savedMenu = await menu.save();
+    res.status(201).json(savedMenu);
   } catch (err) {
     res.status(404).json({ message: err });
   }
