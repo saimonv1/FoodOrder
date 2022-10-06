@@ -23,10 +23,10 @@ const locationsRoute = require("./routes/locations");
 app.use("/api/locations", locationsRoute);
 
 const menusRouter = require("./routes/menus");
-app.use("/api/menus", menusRouter);
+app.use("/api/locations/:locationId/menus", menusRouter);
 
 const dishesRouter = require("./routes/dishes");
-app.use("/api/dishes", dishesRouter);
+app.use("/api/locations/:locationId/menus/:menuId/dishes", dishesRouter);
 
 app.get("/api", (req, res) => {
   res.json("Hello World!");
