@@ -10,7 +10,7 @@ const LocationSchema = mongoose.Schema({
 
 LocationSchema.post('deleteOne', async function(doc, next) {
   //console.log('deleting all menus with location id:');
-  console.log(this.getFilter()["_id"]);
+  //console.log(this.getFilter()["_id"]);
   //await Menu.deleteMany({location: this.getFilter()["_id"]});
   const menusToDelete = await Menu.find({location: this.getFilter()["_id"]});
   //console.log(menusToDelete);

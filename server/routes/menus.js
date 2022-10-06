@@ -14,19 +14,12 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  if(!req.body.name) {
-    res.status(400).json({ message: "Field name is required!" });
-    return;
+  if (!req.body.name) {
+    return res.status(400).json({ message: "Field name is required!" });
   }
 
-  if(!req.body.description) {
-    res.status(400).json({ message: "Field description is required!" });
-    return;
-  }
-
-  if(!await Location.findById(req.params.locationId)){
-    res.status(400).json({ message: "Valid locationId is required!" });
-    return;
+  if (!req.body.description) {
+    return res.status(400).json({ message: "Field description is required!" });
   }
 
   const menu = new Menu({
@@ -68,32 +61,31 @@ router.delete("/:menuId", async (req, res) => {
   }
 });
 
-// router.post("/:menuId/addDish/:dishId", async (req, res) => {
-//   try {
-//     const menu = await Menu.findById(req.params.menuId);
-//     const dish = await Dish.findById(req.params.dishId);
+router.patch("/:menuId", async (req, res) => {
+  if (!req.body.name) {
+    return res.status(400).json({ message: "Field name is required!" });
+  }
 
-//     menu.dishes.push(dish);
+  if (!req.body.description) {
+    return res.status(400).json({ message: "Field description is required!" });
+  }
 
-//     const savedMenu = await menu.save();
-//     res.status(201).json(savedMenu);
-//   } catch (err) {
-//     res.status(404).json({ message: err });
-//   }
-// });
+  try {
+    const menu = await Menu.findById(req.params.menuId);
+    if (!menu)
+      return res
+        .status(404)
+        .json({ message: "Menu with this ID doesn't exist!" });
 
-// router.post("/:menuId/removeDish/:dishId", async (req, res) => {
-//   try {
-//     const menu = await Menu.findById(req.params.menuId);
-//     const dish = await Dish.findById(req.params.dishId);
-
-//     menu.dishes = menu.dishes.filter(item => item._id != dish._id);
-
-//     const savedMenu = await menu.save();
-//     res.status(201).json(savedMenu);
-//   } catch (err) {
-//     res.status(404).json({ message: err });
-//   }
-// });
+    const updatedMenu = await Menu.findByIdAndUpdate(req.params.menuId, {
+      name: req.body.name,
+      description: req.body.description,
+      lastUpdateDate: Date.now(),
+    });
+    res.status(200).json(updatedMenu);
+  } catch (err) {
+    res.status(404).json({ message: err });
+  }
+});
 
 module.exports = router;

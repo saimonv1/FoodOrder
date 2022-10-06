@@ -12,8 +12,16 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  if(!req.body.name) {
-    res.status(433).json({ message: "bad" });
+  if (!req.body.name) {
+    return res.status(400).json({ message: "Field name is required!" });
+  }
+
+  if (!req.body.description) {
+    return res.status(400).json({ message: "Field description is required!" });
+  }
+
+  if (!req.body.price) {
+    return res.status(400).json({ message: "Field price is required!" });
   }
 
   const dish = new Dish({
@@ -49,6 +57,37 @@ router.delete("/:dishId", async (req, res) => {
       menu: req.params.menuId,
     });
     res.status(200).json(removedDish);
+  } catch (err) {
+    res.status(404).json({ message: err });
+  }
+});
+
+router.patch("/:dishId", async (req, res) => {
+  if (!req.body.name) {
+    return res.status(400).json({ message: "Field name is required!" });
+  }
+
+  if (!req.body.description) {
+    return res.status(400).json({ message: "Field description is required!" });
+  }
+
+  if (!req.body.price) {
+    return res.status(400).json({ message: "Field price is required!" });
+  }
+
+  try {
+    const dish = await Dish.findById(req.params.dishId);
+    if (!dish)
+      return res
+        .status(404)
+        .json({ message: "Dish with this ID doesn't exist!" });
+
+    const updatedDish = await Dish.findByIdAndUpdate(req.params.dishId, {
+      name: req.body.name,
+      description: req.body.description,
+      price: req.body.price,
+    });
+    res.status(200).json(updatedDish);
   } catch (err) {
     res.status(404).json({ message: err });
   }
