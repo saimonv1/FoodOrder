@@ -41,10 +41,10 @@ router.post("/", async (req, res) => {
 
 router.get("/:dishId", async (req, res) => {
   try {
-    const dish = await Dish.find({ menu: req.params.menuId }).findById(
+    const dish = await Dish.findById(
       req.params.dishId
     );
-    res.status(200).json(menu);
+    res.status(200).json(dish);
   } catch (err) {
     res.status(404).json({ message: err });
   }

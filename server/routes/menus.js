@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
 
 router.get("/:menuId", async (req, res) => {
   try {
-    const menu = await Menu.find({ location: req.params.locationId }).findById(
+    const menu = await Menu.findById(
       req.params.menuId
     );
     res.status(200).json(menu);

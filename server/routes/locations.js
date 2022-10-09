@@ -59,4 +59,35 @@ router.delete("/:locationId", async (req, res) => {
   }
 });
 
+router.patch("/:locationId", async (req, res) => {
+  if (!req.body.country) {
+    return res.status(400).json({ message: "Field country is required!" });
+  }
+
+  if (!req.body.city) {
+    return res.status(400).json({ message: "Field city is required!" });
+  }
+
+  if (!req.body.address) {
+    return res.status(400).json({ message: "Field address is required!" });
+  }
+
+  try {
+    const location = await Location.findById(req.params.locationId);
+    if (!location)
+      return res
+        .status(404)
+        .json({ message: "Location with this ID doesn't exist!" });
+
+    const updatedLocation = await Location.findByIdAndUpdate(req.params.locationId, {
+      country: req.body.country,
+      city: req.body.city,
+      address: req.body.address,
+    });
+    res.status(200).json(updatedLocation);
+  } catch (err) {
+    res.status(404).json({ message: err });
+  }
+});
+
 module.exports = router;

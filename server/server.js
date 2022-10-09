@@ -28,6 +28,14 @@ app.use("/api/locations/:locationId/menus", menusRouter);
 const dishesRouter = require("./routes/dishes");
 app.use("/api/locations/:locationId/menus/:menuId/dishes", dishesRouter);
 
+
+
+const usersRoute = require("./routes/users");
+app.use("/api/users", usersRoute);
+
+const ordersRouter = require("./routes/orders");
+app.use("/api/users/:userId/orders", ordersRouter);
+
 app.get("/api", (req, res) => {
   res.json("Hello World!");
 });
