@@ -44,6 +44,11 @@ router.get("/:dishId", async (req, res) => {
     const dish = await Dish.findById(
       req.params.dishId
     );
+    if (!dish)
+      return res
+        .status(404)
+        .json({ message: "Dish with this ID doesn't exist!" });
+        
     res.status(200).json(dish);
   } catch (err) {
     res.status(404).json({ message: err });
@@ -52,6 +57,14 @@ router.get("/:dishId", async (req, res) => {
 
 router.delete("/:dishId", async (req, res) => {
   try {
+    const dish = await Dish.findById(
+      req.params.dishId
+    );
+    if (!dish)
+      return res
+        .status(404)
+        .json({ message: "Dish with this ID doesn't exist!" });
+
     const removedDish = await Dish.deleteOne({
       _id: req.params.dishId,
       menu: req.params.menuId,

@@ -43,6 +43,11 @@ router.get("/:menuId", async (req, res) => {
     const menu = await Menu.findById(
       req.params.menuId
     );
+    if (!menu)
+      return res
+        .status(404)
+        .json({ message: "Menu with this ID doesn't exist!" });
+        
     res.status(200).json(menu);
   } catch (err) {
     res.status(404).json({ message: err });
@@ -51,6 +56,12 @@ router.get("/:menuId", async (req, res) => {
 
 router.delete("/:menuId", async (req, res) => {
   try {
+    const menu = await Menu.findById(req.params.menuId);
+    if (!menu)
+      return res
+        .status(404)
+        .json({ message: "Menu with this ID doesn't exist!" });
+        
     const removedMenu = await Menu.deleteOne({
       _id: req.params.menuId,
       location: req.params.locationId,

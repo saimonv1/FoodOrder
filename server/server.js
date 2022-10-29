@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 require("dotenv/config");
 
+const Location = require("./models/Location");
+const Menu = require("./models/Menu");
+
 const app = express();
 app.use(bodyParser.json());
 
@@ -22,11 +25,31 @@ mongoose.connect(DB_URL, {}, (err) => {
 const locationsRoute = require("./routes/locations");
 app.use("/api/locations", locationsRoute);
 
+const menusMiddleware = async (req, res, next) => {
+  const location = await Location.findById(
+    req.params.locationId
+  );
+  if (!location)
+      return res
+        .status(404)
+        .json({ message: "Location with this ID doesn't exist!" });   
+  next();
+};
 const menusRouter = require("./routes/menus");
-app.use("/api/locations/:locationId/menus", menusRouter);
+app.use("/api/locations/:locationId/menus", menusMiddleware, menusRouter);
 
+const dishesMiddleware = async (req, res, next) => {
+  const menu = await Menu.findById(
+    req.params.menuId
+  );
+  if (!menu)
+      return res
+        .status(404)
+        .json({ message: "Menu with this ID doesn't exist!" });   
+  next();
+};
 const dishesRouter = require("./routes/dishes");
-app.use("/api/locations/:locationId/menus/:menuId/dishes", dishesRouter);
+app.use("/api/locations/:locationId/menus/:menuId/dishes", dishesMiddleware, dishesRouter);
 
 
 

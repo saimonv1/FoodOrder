@@ -42,6 +42,11 @@ router.post("/", async (req, res) => {
 router.get("/:locationId", async (req, res) => {
   try {
     const location = await Location.findById(req.params.locationId);
+    if (!location)
+      return res
+        .status(404)
+        .json({ message: "Location with this ID doesn't exist!" });
+        
     res.status(200).json(location);
   } catch (err) {
     res.status(404).json({ message: err });
@@ -50,6 +55,12 @@ router.get("/:locationId", async (req, res) => {
 
 router.delete("/:locationId", async (req, res) => {
   try {
+    const location = await Location.findById(req.params.locationId);
+    if (!location)
+      return res
+        .status(404)
+        .json({ message: "Location with this ID doesn't exist!" });
+
     const removedLocation = await Location.deleteOne({
       _id: req.params.locationId,
     });
