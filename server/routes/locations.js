@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     const savedLocation = await location.save();
     res.status(201).json(savedLocation);
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(500).json({ message: err });
   }
 });
 
@@ -49,7 +49,7 @@ router.get("/:locationId", async (req, res) => {
         
     res.status(200).json(location);
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(500).json({ message: err });
   }
 });
 
@@ -66,7 +66,7 @@ router.delete("/:locationId", async (req, res) => {
     });
     res.status(200).json(removedLocation);
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(500).json({ message: err });
   }
 });
 
@@ -97,7 +97,7 @@ router.patch("/:locationId", async (req, res) => {
     });
     res.status(200).json(updatedLocation);
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(500).json({ message: err });
   }
 });
 

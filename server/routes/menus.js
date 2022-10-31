@@ -34,7 +34,7 @@ router.post("/", async (req, res) => {
     const savedMenu = await menu.save();
     res.status(201).json(savedMenu);
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(500).json({ message: err });
   }
 });
 
@@ -50,7 +50,7 @@ router.get("/:menuId", async (req, res) => {
         
     res.status(200).json(menu);
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(500).json({ message: err });
   }
 });
 
@@ -68,7 +68,7 @@ router.delete("/:menuId", async (req, res) => {
     });
     res.status(200).json(removedMenu);
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(500).json({ message: err });
   }
 });
 
@@ -95,7 +95,7 @@ router.patch("/:menuId", async (req, res) => {
     });
     res.status(200).json(updatedMenu);
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(500).json({ message: err });
   }
 });
 

@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
     const savedDish = await dish.save();
     res.status(201).json(savedDish);
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(500).json({ message: err });
   }
 });
 
@@ -44,6 +44,7 @@ router.get("/:dishId", async (req, res) => {
     const dish = await Dish.findById(
       req.params.dishId
     );
+    console.log(dish.id);
     if (!dish)
       return res
         .status(404)
@@ -71,7 +72,7 @@ router.delete("/:dishId", async (req, res) => {
     });
     res.status(200).json(removedDish);
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(500).json({ message: err });
   }
 });
 
@@ -102,7 +103,7 @@ router.patch("/:dishId", async (req, res) => {
     });
     res.status(200).json(updatedDish);
   } catch (err) {
-    res.status(404).json({ message: err });
+    res.status(500).json({ message: err });
   }
 });
 
