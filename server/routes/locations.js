@@ -3,6 +3,8 @@ const router = express.Router();
 const Location = require("../models/Location");
 const Menu = require("../models/Menu");
 
+const authorization = require("../middleware/authorization");
+
 router.get("/", async (req, res) => {
   try {
     const locations = await Location.find({});
@@ -12,7 +14,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", authorization.authenticateTokenAdmin, async (req, res) => {
   if (!req.body.country) {
     return res.status(400).json({ message: "Field country is required!" });
   }
@@ -53,7 +55,7 @@ router.get("/:locationId", async (req, res) => {
   }
 });
 
-router.delete("/:locationId", async (req, res) => {
+router.delete("/:locationId", authorization.authenticateTokenAdmin, async (req, res) => {
   try {
     const location = await Location.findById(req.params.locationId);
     if (!location)
@@ -70,7 +72,7 @@ router.delete("/:locationId", async (req, res) => {
   }
 });
 
-router.patch("/:locationId", async (req, res) => {
+router.patch("/:locationId", authorization.authenticateTokenAdmin, async (req, res) => {
   if (!req.body.country) {
     return res.status(400).json({ message: "Field country is required!" });
   }

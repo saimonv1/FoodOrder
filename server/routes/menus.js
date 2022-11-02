@@ -4,6 +4,8 @@ const Location = require("../models/Location");
 const Menu = require("../models/Menu");
 const router = express.Router({ mergeParams: true });
 
+const authorization = require("../middleware/authorization");
+
 router.get("/", async (req, res) => {
   try {
     const menus = await Menu.find({ location: req.params.locationId });
@@ -13,7 +15,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", authorization.authenticateTokenAdmin, async (req, res) => {
   if (!req.body.name) {
     return res.status(400).json({ message: "Field name is required!" });
   }
@@ -54,7 +56,7 @@ router.get("/:menuId", async (req, res) => {
   }
 });
 
-router.delete("/:menuId", async (req, res) => {
+router.delete("/:menuId", authorization.authenticateTokenAdmin, async (req, res) => {
   try {
     const menu = await Menu.findById(req.params.menuId);
     if (!menu)
@@ -72,7 +74,7 @@ router.delete("/:menuId", async (req, res) => {
   }
 });
 
-router.patch("/:menuId", async (req, res) => {
+router.patch("/:menuId", authorization.authenticateTokenAdmin, async (req, res) => {
   if (!req.body.name) {
     return res.status(400).json({ message: "Field name is required!" });
   }

@@ -22,7 +22,7 @@ router.post("/", async (req, res) => {
 
   const order = new Order({
     user: req.body.user,
-    dishes: req.body.dishes
+    dishes: req.body.dishes,
   });
 
   try {
@@ -35,7 +35,7 @@ router.post("/", async (req, res) => {
 
 router.get("/:orderId", async (req, res) => {
   try {
-    const order = await Order.findById(req.params.orderId);
+    const order = await Order.findById(req.params.orderId).populate("user");
     if (!order)
       return res
         .status(404)
@@ -49,7 +49,7 @@ router.get("/:orderId", async (req, res) => {
 
 router.delete("/:orderId", async (req, res) => {
   try {
-    const order = await Order.findById(req.params.orderId);
+    const order = await Order.findById(req.params.orderId).populate("user");
     if (!order)
       return res
         .status(404)
@@ -74,7 +74,7 @@ router.patch("/:orderId", async (req, res) => {
   }
 
   try {
-    const order = await Order.findById(req.params.orderId);
+    const order = await Order.findById(req.params.orderId).populate("user");
     if (!order)
       return res
         .status(404)
@@ -82,7 +82,7 @@ router.patch("/:orderId", async (req, res) => {
 
     const updatedOrder = await Order.findByIdAndUpdate(req.params.orderId, {
       user: req.body.user,
-      dishes: req.body.dishes
+      dishes: req.body.dishes,
     });
     res.status(200).json(updatedOrder);
   } catch (err) {

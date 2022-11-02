@@ -3,9 +3,13 @@ const User = require("../models/User");
 const router = express.Router({ mergeParams: true });
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-require('dotenv').config();
+const RefreshToken = require("../models/RefreshToken");
+require("dotenv").config();
 
-router.get("/", async (req, res) => {
+const authorization = require("../middleware/authorization");
+const utils = require("../utils/auth.util");
+
+router.get("/", authorization.authenticateTokenAdmin, async (req, res) => {
   try {
     const users = await User.find();
     res.status(200).json(users);
@@ -68,13 +72,28 @@ router.post("/", async (req, res) => {
     return res.status(500).json({ message: err });
   }
 
-  let token;
+  let accessToken, refreshToken;
   try {
-    token = jwt.sign({ userId: savedUser.id, email: savedUser.email, username: savedUser.username, role: savedUser.role }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "1h" });
+    accessToken = utils.generateAccessToken(savedUser);
+    refreshToken = utils.generateRefreshToken(savedUser);
   } catch (err) {
     return res.status(500).json({ message: err });
   }
-  return res.status(201).json({ message: "User created successfully", token: token });
+  const newRefreshToken = new RefreshToken({
+    refreshToken: refreshToken,
+  });
+  try {
+    await newRefreshToken.save();
+  } catch (err) {
+    return res.status(500).json({ message: err });
+  }
+  return res
+    .status(201)
+    .json({
+      message: "User created successfully",
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+    });
 });
 
 //Login
@@ -86,7 +105,7 @@ router.post("/login", async (req, res) => {
     return res.status(400).json({ message: "Field password is required!" });
   }
 
-  const user = await User.find({ email: req.body.email });
+  const user = await User.findOne({ email: req.body.email });
   if (!user) {
     return res
       .status(404)
@@ -94,27 +113,72 @@ router.post("/login", async (req, res) => {
   }
 
   try {
-    if(!await bcrypt.compare(req.body.password, user.password)) {
+    if (!(await bcrypt.compare(req.body.password, user.password))) {
       return res.status(400).json({ message: "Wrong password" });
     }
   } catch (err) {
     return res.status(500).json({ message: err });
   }
-  let token;
+  let accessToken, refreshToken;
   try {
-    token = jwt.sign({ userId: savedUser.id, email: savedUser.email, username: savedUser.username, role: savedUser.role }, process.env.ACESS_TOKEN_SECRET, { expiresIn: "1h" });
+    accessToken = utils.generateAccessToken(user);
+    refreshToken = utils.generateRefreshToken(user);
+  } catch (err) {
+    return res.status(500).json({ message: err });
+  }
+  const newRefreshToken = new RefreshToken({
+    refreshToken: refreshToken,
+  });
+  try {
+    await newRefreshToken.save();
   } catch (err) {
     return res.status(500).json({ message: err });
   }
   try {
-    const updatedUser = await User.findByIdAndUpdate(user.id, {
-      lastJoinDate: Date.now()
+    await User.findByIdAndUpdate(user.id, {
+      lastJoinDate: Date.now(),
     });
   } catch (err) {
     return res.status(500).json({ message: err });
   }
-  return res.status(201).json({ message: "Logged in successfully", token: token });
-  //jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
+  return res
+    .status(201)
+    .json({
+      message: "Logged in successfully",
+      accessToken: accessToken,
+      refreshToken: refreshToken,
+    });
+});
+
+router.post("/token", async (req, res) => {
+  const refreshToken = req.body.token;
+  if (!refreshToken) return res.status(401);
+  const refreshTokenInDB = await RefreshToken.findOne({
+    refreshToken: refreshToken,
+  });
+  if (!refreshTokenInDB) return res.status(403);
+  jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, (err, user) => {
+    if (err) return res.status(403);
+    const accessToken = utils.generateAccessToken(user);
+    return res.status(201).json({ accessToken: accessToken });
+  });
+});
+
+router.delete("/logout", async (req, res) => {
+  try {
+    const refreshToken = await RefreshToken.findOne({
+      refreshToken: req.body.token,
+    });
+    if (!refreshToken)
+      return res.status(404).json({ message: "Refresh Token not found!" });
+
+    const removedToken = await RefreshToken.deleteOne({
+      refreshToken: req.body.token,
+    });
+    res.status(200).json(removedToken);
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
 });
 
 module.exports = router;

@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router({ mergeParams: true });
 const Dish = require("../models/Dish");
 
+const authorization = require("../middleware/authorization");
+
 router.get("/", async (req, res) => {
   try {
     const dishes = await Dish.find({ menu: req.params.menuId });
@@ -11,7 +13,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", authorization.authenticateTokenAdmin, async (req, res) => {
   if (!req.body.name) {
     return res.status(400).json({ message: "Field name is required!" });
   }
@@ -44,7 +46,6 @@ router.get("/:dishId", async (req, res) => {
     const dish = await Dish.findById(
       req.params.dishId
     );
-    console.log(dish.id);
     if (!dish)
       return res
         .status(404)
@@ -56,7 +57,7 @@ router.get("/:dishId", async (req, res) => {
   }
 });
 
-router.delete("/:dishId", async (req, res) => {
+router.delete("/:dishId", authorization.authenticateTokenAdmin, async (req, res) => {
   try {
     const dish = await Dish.findById(
       req.params.dishId
@@ -76,7 +77,7 @@ router.delete("/:dishId", async (req, res) => {
   }
 });
 
-router.patch("/:dishId", async (req, res) => {
+router.patch("/:dishId", authorization.authenticateTokenAdmin, async (req, res) => {
   if (!req.body.name) {
     return res.status(400).json({ message: "Field name is required!" });
   }
