@@ -1,3 +1,6 @@
+const Location = require("../models/Location");
+const Menu = require("../models/Menu");
+
 //Check if location ID is valid in menu route
 const menusMiddleware = async (req, res, next) => {
   const location = await Location.findById(req.params.locationId);
