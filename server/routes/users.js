@@ -87,13 +87,11 @@ router.post("/", async (req, res) => {
   } catch (err) {
     return res.status(500).json({ message: err });
   }
-  return res
-    .status(201)
-    .json({
-      message: "User created successfully",
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    });
+  return res.status(201).json({
+    message: "User created successfully",
+    accessToken: accessToken,
+    refreshToken: refreshToken,
+  });
 });
 
 //Login
@@ -141,13 +139,11 @@ router.post("/login", async (req, res) => {
   } catch (err) {
     return res.status(500).json({ message: err });
   }
-  return res
-    .status(201)
-    .json({
-      message: "Logged in successfully",
-      accessToken: accessToken,
-      refreshToken: refreshToken,
-    });
+  return res.status(201).json({
+    message: "Logged in successfully",
+    accessToken: accessToken,
+    refreshToken: refreshToken,
+  });
 });
 
 router.post("/token", async (req, res) => {
