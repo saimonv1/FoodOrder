@@ -1,16 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 require("dotenv/config");
-
-const Location = require("./models/Location");
-const Menu = require("./models/Menu");
 
 const authorization = require("./middleware/authorization");
 const parameters = require("./middleware/parameters");
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 const PORT = process.env.PORT;
 const DB_URL = process.env.DB_CONNECTION;
@@ -34,6 +33,9 @@ app.use("/api/locations/:locationId/menus", parameters.menusMiddleware, menusRou
 const dishesRouter = require("./routes/dishes");
 app.use("/api/locations/:locationId/menus/:menuId/dishes", parameters.dishesMiddleware, dishesRouter);
 
+
+const tokensRoute = require("./routes/tokens");
+app.use("/api/tokens", tokensRoute);
 
 const usersRoute = require("./routes/users");
 app.use("/api/users", usersRoute);

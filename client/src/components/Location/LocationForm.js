@@ -30,10 +30,26 @@ const DUMMY_CITIES = [
   },
 ];
 
-const LocationForm = (props) => {
+const LocationForm = async (props) => {
   const dispatch = useDispatch();
   const selectRef = useRef();
   var navigate = useNavigate();
+
+  let locations; 
+  await fetch("https://goldfish-app-ibq9e.ondigitalocean.app/api/locations/",
+  {
+    method: "GET", 
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+  .then(res => res.json())
+  .then(res => {
+    locations = res;
+  })
+  .catch(() => {
+
+  });
 
   const onChangeHandler = () => {
     dispatch(
@@ -49,7 +65,7 @@ const LocationForm = (props) => {
       <h1>Restaurant</h1>
       <h4>Choose your location.</h4>
       <br />
-      <Dropdown selectRef={selectRef} label="Restaurants" data={DUMMY_CITIES} />
+      <Dropdown selectRef={selectRef} label="Restaurants" data={locations} />
       <div className={classes.actions}>
         <button onClick={onChangeHandler} type="submit">
           Select restaurant

@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const AccessTokenBlackList = require("../models/AccessTokenBlackList");
 const User = require("../models/User");
 
 const generateAccessToken = (user) => {
@@ -36,4 +37,14 @@ const verifyUser = async (authorizedUsername, neededUserId) => {
   }
 };
 
-module.exports = { generateAccessToken, generateRefreshToken, verifyUser };
+//Returns true if token is valid and not in blacklist, false if token is not valid
+const verifyTokenBlacklist = async (token) => {
+  const accessTokenInDB = await AccessTokenBlackList.find({accessToken: token});
+  if(!accessTokenInDB) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+module.exports = { generateAccessToken, generateRefreshToken, verifyUser, verifyTokenBlacklist };
