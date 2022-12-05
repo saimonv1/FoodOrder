@@ -7,16 +7,12 @@ const Dropdown = (props) => {
       <select
         ref={props.selectRef}
         id="dropdown"
-        value={props.value}
-        onChange={props.onChange}
       >
-        {props.data.map((option) => {
+        {props.data?.map((option) => {
           const locationValue =
             option.address + ", " + option.city + ", " + option.country;
           return (
-            <option itemID={option.id} key={option.id} value={locationValue}>
-              {locationValue}
-            </option>
+            <option itemID={option._id} key={option._id} label={locationValue} value={option._id} />
           );
         })}
       </select>

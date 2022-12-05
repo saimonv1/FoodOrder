@@ -6,7 +6,9 @@ import NotFound from './pages/Utility/NotFound';
 import Login from './pages/Authenticate/Login';
 import Register from './pages/Authenticate/Register';
 import Location from './pages/Main/Location';
-import Menu from './pages/Main/Menu';
+import LocationMenu from './pages/Main/LocationMenu';
+import Dish from './pages/Main/Dish';
+import MenuDishes from './pages/Main/MenuDishes';
 
 function App() {
   return (
@@ -16,7 +18,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/location" element={<Location />} />
-        <Route path="/menu" element={<Menu />} />
+        <Route path="/location/:locationId/menu/" element={<LocationMenu />} />
+        <Route path="/location/:locationId/menu/:menuId/dish/" element={<MenuDishes />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>

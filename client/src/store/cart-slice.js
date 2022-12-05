@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  location: {},
+  location: null,
   cartItems: [],
   totalPrice: 0,
 };
@@ -12,12 +12,7 @@ const cartSlice = createSlice({
   reducers: {
     changeLocation(state, action) {
       const newLocation = action.payload.location;
-      var splitLocation = newLocation.split(/, /);
-      state.location = {
-        country: splitLocation[2],
-        city: splitLocation[1],
-        address: splitLocation[0],
-      };
+      state.location = newLocation;
     },
   },
 });
