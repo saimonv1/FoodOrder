@@ -1,4 +1,5 @@
 const express = require("express");
+const authorization = require("../middleware/authorization");
 const router = express.Router({ mergeParams: true });
 
 //Login
@@ -69,10 +70,7 @@ router.put("/", async (req, res) => {
 });
 
 //Logout
-router.delete(
-  "/",
-  authorization.authenticateTokenPersonal(),
-  async (req, res) => {
+router.delete("/", authorization.authenticateTokenPersonal, async (req, res) => {
     try {
       const refreshToken = await RefreshToken.findOne({
         refreshToken: req.body.token,
