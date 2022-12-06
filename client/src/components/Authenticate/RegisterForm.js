@@ -12,8 +12,12 @@ const RegisterForm = (props) => {
           <input type="email" id="email" />
         </div>
         <div className={classes.control}>
-          <label htmlFor="current-password">Password</label>
-          <input type="password" id="current-password" min="6" />
+          <label htmlFor="username">Username</label>
+          <input type="text" id="username" min="3" autoComplete="on" />
+        </div>
+        <div className={classes.control}>
+          <label htmlFor="new-password">Password</label>
+          <input type="password" id="new-password" min="6" autoComplete="on" />
         </div>
         <div className={classes.actions}>
           <button type="submit">Register</button>

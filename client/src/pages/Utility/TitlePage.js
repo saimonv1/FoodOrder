@@ -11,7 +11,7 @@ const TitlePage = () => {
         if(!location) {
             navigate('/location');
         } else {
-            navigate('/location/' + location + '/menu/');
+            navigate(`/location/${location}`);
         }
         // eslint-disable-next-line
     }, []);

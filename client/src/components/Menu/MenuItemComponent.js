@@ -10,7 +10,7 @@ const MenuItemComponent = (props) => {
     const { locationId } = params;
 
     const onClickHandler = (event) => {
-        navigate("/location/" + locationId + "/menu/" + props.id + "/dish/", { replace: true });
+        navigate(`/location/${locationId}/menu/${props.id}`, { replace: true });
     };
 
     return (

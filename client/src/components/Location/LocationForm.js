@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import Dropdown from "../UI/Dropdown";
 
@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 import classes from "./LocationForm.module.css";
 import Loading from "../UI/Loading";
+import { getLocations } from "../../utils/api";
+import ErrorMessage from "../UI/ErrorMessage";
 
 const LocationForm = () => {
   const dispatch = useDispatch();
@@ -17,25 +19,22 @@ const LocationForm = () => {
 
   const [locations, setLocations] = useState();
   const [isLoading, setIsLoading] = useState(true);
-
-  const api = useSelector(state => state.app.url);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(api + "/locations/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
+    getLocations()
       .then((res) => {
         setLocations(res);
-        setIsLoading(false);
+        setError(null);
       })
       .catch((e) => {
         console.log(e);
+        setError(e);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-  }, [api]);
+  }, []);
 
   const onChangeHandler = () => {
     //console.log(selectRef.current.value);
@@ -51,10 +50,13 @@ const LocationForm = () => {
     <section className={classes.location}>
       <h1>Restaurant</h1>
       <h4>Choose your location.</h4>
-      
+
       <br />
       {isLoading && <Loading />}
-      {!isLoading && <Dropdown selectRef={selectRef} label="Restaurants" data={locations} />}
+      {!isLoading && !error && (
+        <Dropdown selectRef={selectRef} label="Restaurants" data={locations} />
+      )}
+      {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}
       <div className={classes.actions}>
         <button onClick={onChangeHandler} type="submit">
           Select restaurant

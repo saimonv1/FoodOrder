@@ -1,54 +1,48 @@
 import { useEffect, useState } from "react";
 import classes from "./LocationMenuComponent.module.css";
 import MenuItemComponent from "./MenuItemComponent";
-import { useSelector } from "react-redux";
 import Loading from "../UI/Loading";
 import { useParams } from "react-router-dom";
+import { getMenus } from "../../utils/api";
+import ErrorMessage from "../UI/ErrorMessage";
 
 const LocationMenuComponent = () => {
   const [menus, setMenus] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  //const location = useSelector((state) => state.cart.location);
-  const api = useSelector((state) => state.app.url);
+  const [error, setError] = useState(null);
 
   const params = useParams();
   const { locationId } = params;
-  const location = locationId;
-
-  let url;
-  if (location) {
-    url = api + "/locations/" + location + "/menus";
-  }
 
   useEffect(() => {
-    if (url) {
-      fetch(url, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
+    if(locationId) {
+      getMenus(locationId)
+      .then((res) => {
+        setMenus(res);
+        setError(null);
+        console.log(res);
       })
-        .then((res) => res.json())
-        .then((res) => {
-          setMenus(res);
-          setIsLoading(false);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      .catch((e) => {
+        console.log(e);
+        setError(e);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
     }
-  }, [url]);
+  }, [locationId]);
 
   return (
     <div className={classes.location}>
       <h1>Menus</h1>
       {isLoading && <Loading />}
-      {!isLoading && 
+      {!isLoading && !error &&
       menus?.map((menu) => {
         return (
           <MenuItemComponent id={menu._id} key={menu._id} name={menu.name} description={menu.description} />
         );
       })}
+      {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}
     </div>
   );
 };

@@ -18,8 +18,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/location" element={<Location />} />
-        <Route path="/location/:locationId/menu/" element={<LocationMenu />} />
-        <Route path="/location/:locationId/menu/:menuId/dish/" element={<MenuDishes />} />
+        <Route path="/location/:locationId/" element={<LocationMenu />} />
+        <Route path="/location/:locationId/menu/:menuId/" element={<MenuDishes />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
