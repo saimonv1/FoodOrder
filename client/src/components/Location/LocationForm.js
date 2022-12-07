@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 import classes from "./LocationForm.module.css";
 import Loading from "../UI/Loading";
-import { getLocations } from "../../utils/api";
+import { getLocations } from "../../services/location.service";
 import ErrorMessage from "../UI/ErrorMessage";
 
 const LocationForm = () => {

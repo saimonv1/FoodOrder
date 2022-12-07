@@ -4,7 +4,7 @@ import classes from "./MenuDishesComponent.module.css";
 
 import Loading from "../UI/Loading";
 import MenuDishesItemComponent from "./MenuDishesItemComponent";
-import { getDishes } from "../../utils/api";
+import { getDishes } from "../../services/dish.service";
 import ErrorMessage from "../UI/ErrorMessage";
 
 const MenuDishesComponent = (props) => {

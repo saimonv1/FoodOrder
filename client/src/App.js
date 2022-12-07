@@ -9,6 +9,7 @@ import Location from './pages/Main/Location';
 import LocationMenu from './pages/Main/LocationMenu';
 import Dish from './pages/Main/Dish';
 import MenuDishes from './pages/Main/MenuDishes';
+import AddLocation from './components/Location/AddLocation';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/location" element={<Location />} />
+        <Route path="/addLocation" element={<AddLocation />} />
         <Route path="/location/:locationId/" element={<LocationMenu />} />
         <Route path="/location/:locationId/menu/:menuId/" element={<MenuDishes />} />
         <Route path="*" element={<NotFound />} />

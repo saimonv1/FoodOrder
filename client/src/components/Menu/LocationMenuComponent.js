@@ -3,7 +3,7 @@ import classes from "./LocationMenuComponent.module.css";
 import MenuItemComponent from "./MenuItemComponent";
 import Loading from "../UI/Loading";
 import { useParams } from "react-router-dom";
-import { getMenus } from "../../utils/api";
+import { getMenus } from "../../services/menu.service";
 import ErrorMessage from "../UI/ErrorMessage";
 
 const LocationMenuComponent = () => {
