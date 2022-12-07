@@ -1,10 +1,12 @@
 const express = require("express");
-const authorization = require("../middleware/authorization");
 const router = express.Router({ mergeParams: true });
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const RefreshToken = require("../models/RefreshToken");
+
+const authorization = require("../middleware/authorization");
+const utils = require("../utils/auth.util");
 
 //Login
 router.post("/", async (req, res) => {
