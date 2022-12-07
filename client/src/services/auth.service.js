@@ -9,7 +9,7 @@ const api = axios.create({
 
 const authApi = axios.create({
     baseURL: URL,
-    headers: authHeader(),
+    headers: authHeader()
 });
 
 export const login = async (email, password) => {
@@ -36,10 +36,11 @@ export const refresh = async (token) => {
     return res.data;
 };
 
-export const logout = async (accessToken, refreshToken) => {
+export const logout = async (refreshToken) => {
     localStorage.removeItem("user");
-    await authApi.delete('/tokens', {
-        accessToken,
+
+    const res = await authApi.delete('/tokens', {
         refreshToken
     });
+    return res.data;
 };

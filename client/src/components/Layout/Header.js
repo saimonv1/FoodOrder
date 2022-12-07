@@ -1,17 +1,11 @@
-import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { logout } from "../../services/auth.service";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { getUserData } from "../../storage/auth.storage";
 import classes from "./Header.module.css";
 
 const Header = (props) => {
   const user = getUserData();
-  const navigate = useNavigate();
-
-  const onLogout = (event) => {
-    logout();
-    navigate("/");
-  };
+  console.log(user);
 
   return (
     <header className={classes.header}>
@@ -19,9 +13,24 @@ const Header = (props) => {
         <NavLink to="/">No Hunger</NavLink>
       </div>
       <div className={classes.navigation}>
-        <NavLink className={classes.button} to="/location">Location</NavLink>
-        {!user && <NavLink className={classes.button} to="/login">Login</NavLink>}
-        {user && <button className={classes.button} onClick={onLogout}>Logout</button>}
+        {user && user.role === "Admin" && (
+          <NavLink className={classes.button} to="/admin">
+            Admin
+          </NavLink>
+        )}
+        <NavLink className={classes.button} to="/location">
+          Location
+        </NavLink>
+        {!user && (
+          <NavLink className={classes.button} to="/login">
+            Login
+          </NavLink>
+        )}
+        {user && (
+          <NavLink className={classes.button} to="/logout">
+            Logout
+          </NavLink>
+        )}
       </div>
     </header>
   );

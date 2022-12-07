@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import classes from "./MenuDishesComponent.module.css";
 
 import Loading from "../UI/Loading";
 import MenuDishesItemComponent from "./MenuDishesItemComponent";
 import { getDishes } from "../../services/dish.service";
 import ErrorMessage from "../UI/ErrorMessage";
+import Card from "../UI/Card";
 
 const MenuDishesComponent = (props) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -33,7 +33,7 @@ const MenuDishesComponent = (props) => {
   }, [locationId, menuId]);
   
   return (
-    <div className={classes.menu}>
+    <Card>
       <h1>Menu</h1>
       {isLoading && <Loading />}
       {!isLoading && !error &&
@@ -48,7 +48,7 @@ const MenuDishesComponent = (props) => {
           );
         })}
       {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}
-    </div>
+    </Card>
   );
 };
 

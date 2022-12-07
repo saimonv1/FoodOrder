@@ -23,5 +23,25 @@ export const addLocation = async (country, city, address) => {
         city,
         address
     });
+
     return res.data;
 };
+
+export const getLocation = async (locationId) => {
+    const res = await api.get(`/locations/${locationId}`);
+    return res.data;
+};
+
+export const updateLocation = async (locationId, country, city, address) => {
+    const res = await authApi.patch(`/locations/${locationId}`, {
+        country,
+        city,
+        address
+    });
+    return res.data;
+}
+
+export const deleteLocation = async (locationId) => {
+    const res = await authApi.delete(`/locations/${locationId}`);
+    return res.data;
+}

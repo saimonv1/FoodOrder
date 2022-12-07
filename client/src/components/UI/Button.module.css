@@ -9,8 +9,8 @@
     align-items: center;
     border-radius: 5px;
     font-weight: bold;
-    transition: border-width 0.05s linear;
-    
+    border-bottom: 3px solid transparent;
+    transition: border-color 0.05s linear;
 }
 
 .button:hover {

@@ -16,3 +16,4 @@ export const getDishes = async (locationId, menuId) => {
     const res = await api.get(`/locations/${locationId}/menus/${menuId}/dishes`);
     return res.data;
 };
+

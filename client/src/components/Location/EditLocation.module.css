@@ -1,4 +1,4 @@
-.location {
+.locations {
     margin: 3rem auto;
     width: 95%;
     max-width: 25rem;
@@ -9,7 +9,7 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   }
   
-  .location h1, h4 {
+  .locations h1, h4 {
     text-align: center;
     color: white;
   }

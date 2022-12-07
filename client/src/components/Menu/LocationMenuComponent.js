@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import classes from "./LocationMenuComponent.module.css";
 import MenuItemComponent from "./MenuItemComponent";
 import Loading from "../UI/Loading";
 import { useParams } from "react-router-dom";
 import { getMenus } from "../../services/menu.service";
 import ErrorMessage from "../UI/ErrorMessage";
+import Card from "../UI/Card";
 
 const LocationMenuComponent = () => {
   const [menus, setMenus] = useState();
@@ -20,7 +20,6 @@ const LocationMenuComponent = () => {
       .then((res) => {
         setMenus(res);
         setError(null);
-        console.log(res);
       })
       .catch((e) => {
         console.log(e);
@@ -33,7 +32,7 @@ const LocationMenuComponent = () => {
   }, [locationId]);
 
   return (
-    <div className={classes.location}>
+    <Card>
       <h1>Menus</h1>
       {isLoading && <Loading />}
       {!isLoading && !error &&
@@ -43,7 +42,7 @@ const LocationMenuComponent = () => {
         );
       })}
       {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}
-    </div>
+    </Card>
   );
 };
 

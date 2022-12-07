@@ -7,9 +7,12 @@ import Login from './pages/Authenticate/Login';
 import Register from './pages/Authenticate/Register';
 import Location from './pages/Main/Location';
 import LocationMenu from './pages/Main/LocationMenu';
-import Dish from './pages/Main/Dish';
 import MenuDishes from './pages/Main/MenuDishes';
 import AddLocation from './components/Location/AddLocation';
+import EditLocation from './components/Location/EditLocation';
+import AllLocations from './components/Location/AllLocations';
+import Panel from './components/Admin/Panel';
+import Logout from './components/Authenticate/Logout';
 
 function App() {
   return (
@@ -18,10 +21,19 @@ function App() {
         <Route path="/" element={<TitlePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/logout" element={<Logout />} />
+
         <Route path="/location" element={<Location />} />
-        <Route path="/addLocation" element={<AddLocation />} />
         <Route path="/location/:locationId/" element={<LocationMenu />} />
         <Route path="/location/:locationId/menu/:menuId/" element={<MenuDishes />} />
+
+        <Route path="/admin/" element={<Panel />} />
+
+        <Route path="/locations/" element={<AllLocations />} />
+        <Route path="/addLocation" element={<AddLocation />} />
+        <Route path="/editLocation/:locationId/" element={<EditLocation />} />
+
+
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Layout>
