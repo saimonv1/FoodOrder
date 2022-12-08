@@ -17,12 +17,13 @@ const AddDish = (props) => {
     const name = event.target.name.value;
     const image = event.target.image.value;
     const description = event.target.description.value;
+    const price = event.target.price.value;
 
-    addDish(locationId, menuId, name, image, description)
+    addDish(locationId, menuId, name, image, description, price)
       .then((res) => {
         console.log(res);
         setError(null);
-        navigate(`/locations/${locationId}/menus`, { replace: true });
+        navigate(`/locations/${locationId}/menus/${menuId}/dishes`, { replace: true });
       })
       .catch((e) => {
         console.log(e?.response?.data?.message);
@@ -39,8 +40,8 @@ const AddDish = (props) => {
 
   return (
     <section className={classes.dish}>
-      <h1>Add menu</h1>
-      <h4>You can add menu here.</h4>
+      <h1>Add dish</h1>
+      <h4>You can add dish here.</h4>
       <br />
       <form onSubmit={onSubmitHandler}>
         <div className={classes.control}>
@@ -55,9 +56,13 @@ const AddDish = (props) => {
           <label htmlFor="description">Description</label>
           <input type="text" id="description" required />
         </div>
+        <div className={classes.control}>
+          <label htmlFor="price">Price</label>
+          <input type="number" step="0.01" min="0" id="price" required />
+        </div>
         {error && <ErrorMessageSmall>{error}</ErrorMessageSmall>}
         <div className={classes.actions}>
-          <button type="submit">Add menu</button>
+          <button type="submit">Add dish</button>
         </div>
       </form>
     </section>

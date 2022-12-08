@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import Loading from "../UI/Loading";
 import { deleteDish, getDishes } from "../../services/dish.service";
@@ -14,6 +14,8 @@ const AllDishes = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [dishes, setDishes] = useState();
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   const [openModal, setOpenModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
@@ -40,7 +42,9 @@ const AllDishes = (props) => {
     }
   }, [locationId, menuId]);
 
-  const onAddHandler = (event) => {};
+  const onAddHandler = (event) => {
+    navigate(`/locations/${locationId}/menus/${menuId}/addDish`);
+  };
 
   const openModalHandler = (id) => {
     setOpenModal(true);
