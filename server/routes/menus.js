@@ -20,12 +20,17 @@ router.post("/", authorization.authenticateTokenAdmin, async (req, res) => {
     return res.status(400).json({ message: "Field name is required!" });
   }
 
+  if (!req.body.image) {
+    return res.status(400).json({ message: "Field image is required!" });
+  }
+
   if (!req.body.description) {
     return res.status(400).json({ message: "Field description is required!" });
   }
 
   const menu = new Menu({
     name: req.body.name,
+    image: req.body.image,
     description: req.body.description,
     creationDate: Date.now(),
     lastUpdateDate: Date.now(),
@@ -79,6 +84,10 @@ router.patch("/:menuId", authorization.authenticateTokenAdmin, async (req, res) 
     return res.status(400).json({ message: "Field name is required!" });
   }
 
+  if (!req.body.image) {
+    return res.status(400).json({ message: "Field image is required!" });
+  }
+
   if (!req.body.description) {
     return res.status(400).json({ message: "Field description is required!" });
   }
@@ -92,6 +101,7 @@ router.patch("/:menuId", authorization.authenticateTokenAdmin, async (req, res) 
 
     const updatedMenu = await Menu.findByIdAndUpdate(req.params.menuId, {
       name: req.body.name,
+      image: req.body.image,
       description: req.body.description,
       lastUpdateDate: Date.now(),
     });

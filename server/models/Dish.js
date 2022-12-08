@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const DishSchema = mongoose.Schema({
   name: {type: String, required: true},
+  image: {type: String, required: true},
   description: {type: String, required: true},
   price: {type: mongoose.Schema.Types.Decimal128, required: true},
   menu: {type: mongoose.Schema.Types.ObjectId, ref: "Menu"},

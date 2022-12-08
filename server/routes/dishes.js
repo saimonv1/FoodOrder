@@ -18,6 +18,10 @@ router.post("/", authorization.authenticateTokenAdmin, async (req, res) => {
     return res.status(400).json({ message: "Field name is required!" });
   }
 
+  if (!req.body.image) {
+    return res.status(400).json({ message: "Field image is required!" });
+  }
+
   if (!req.body.description) {
     return res.status(400).json({ message: "Field description is required!" });
   }
@@ -28,6 +32,7 @@ router.post("/", authorization.authenticateTokenAdmin, async (req, res) => {
 
   const dish = new Dish({
     name: req.body.name,
+    image: req.body.image,
     description: req.body.description,
     price: req.body.price,
     menu: req.params.menuId,
@@ -82,6 +87,10 @@ router.patch("/:dishId", authorization.authenticateTokenAdmin, async (req, res) 
     return res.status(400).json({ message: "Field name is required!" });
   }
 
+  if (!req.body.image) {
+    return res.status(400).json({ message: "Field image is required!" });
+  }
+
   if (!req.body.description) {
     return res.status(400).json({ message: "Field description is required!" });
   }
@@ -99,6 +108,7 @@ router.patch("/:dishId", authorization.authenticateTokenAdmin, async (req, res) 
 
     const updatedDish = await Dish.findByIdAndUpdate(req.params.dishId, {
       name: req.body.name,
+      image: req.body.image,
       description: req.body.description,
       price: req.body.price,
     });

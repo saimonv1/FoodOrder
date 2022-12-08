@@ -4,6 +4,7 @@ const Dish = require("./Dish");
 
 const MenuSchema = mongoose.Schema({
   name: { type: String, required: true },
+  image: { type: String, required: true },
   description: { type: String, required: true },
   creationDate: { type: Date, required: true },
   lastUpdateDate: { type: Date, required: true },
