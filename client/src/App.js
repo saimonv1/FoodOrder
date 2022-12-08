@@ -13,6 +13,9 @@ import EditLocation from './components/Location/EditLocation';
 import AllLocations from './components/Location/AllLocations';
 import Panel from './components/Admin/Panel';
 import Logout from './components/Authenticate/Logout';
+import AllMenus from './components/Menu/AllMenus';
+import AddMenu from './components/Menu/AddMenu';
+import EditMenu from './components/Menu/EditMenu';
 
 function App() {
   return (
@@ -32,6 +35,10 @@ function App() {
         <Route path="/locations/" element={<AllLocations />} />
         <Route path="/addLocation" element={<AddLocation />} />
         <Route path="/editLocation/:locationId/" element={<EditLocation />} />
+
+        <Route path="/locations/:locationId/menus" element={<AllMenus />} />
+        <Route path="/locations/:locationId/addMenu" element={<AddMenu />}/>
+        <Route path="/locations/:locationId/editMenu/:menuId" element={<EditMenu />}/>
 
 
         <Route path="*" element={<NotFound />} />

@@ -1,3 +1,5 @@
+//import { getUserData } from "../storage/auth.storage";
+
 export default function authHeader() {
     //const user = JSON.parse(localStorage?.getItem("user"));
     //const user = { name: "test" };

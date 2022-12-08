@@ -1,18 +1,20 @@
 import { useEffect, useState } from "react";
 import Loading from "../UI/Loading";
 import ErrorMessage from "../UI/ErrorMessage";
-import { deleteLocation, getLocations } from "../../services/location.service";
-import LocationItem from "./LocationItem";
 import Card from "../UI/Card";
 import Modal from "../UI/Modal";
 import Button from "../UI/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getUserData } from "../../storage/auth.storage";
+import MenuItem from "./MenuItem";
+import { deleteMenu, getMenus } from "../../services/menu.service";
 
-const AllLocations = () => {
+const AllMenus = () => {
   const navigate = useNavigate();
 
-  const [locations, setLocations] = useState();
+  const { locationId } = useParams();
+
+  const [menus, setMenus] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -30,7 +32,7 @@ const AllLocations = () => {
   };
 
   const onDeleteHandler = () => {
-    deleteLocation(deleteId)
+    deleteMenu(locationId, deleteId)
       .then((res) => {
         console.log(res);
         setOpenModal(false);
@@ -41,7 +43,7 @@ const AllLocations = () => {
   };
 
   const onAddHandler = () => {
-    navigate(`/addLocation`);
+    navigate(`/locations/${locationId}/addMenu`);
   };
 
   useEffect(() => {
@@ -50,9 +52,9 @@ const AllLocations = () => {
       navigate("/");
     }
 
-    getLocations()
+    getMenus(locationId)
       .then((res) => {
-        setLocations(res);
+        setMenus(res);
         setError(null);
       })
       .catch((e) => {
@@ -62,11 +64,11 @@ const AllLocations = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [openModal, navigate]);
+  }, [openModal, navigate, locationId]);
 
   return (
     <Card>
-      <h1>Locations</h1>
+      <h1>Menus</h1>
       <br />
       <div
         style={{
@@ -76,19 +78,19 @@ const AllLocations = () => {
           transform: "translate(-50%, -50%)",
         }}
       >
-        <Button onClick={onAddHandler}>Add new location</Button>
+        <Button onClick={onAddHandler}>Add new menu</Button>
       </div>
       {isLoading && <Loading />}
       {!isLoading &&
         !error &&
-        locations?.map((location) => {
+        menus?.map((menu) => {
           return (
-            <LocationItem
-              id={location._id}
-              key={location._id}
-              country={location.country}
-              city={location.city}
-              address={location.address}
+            <MenuItem
+              id={menu._id}
+              key={menu._id}
+              name={menu.name}
+              image={menu.image}
+              description={menu.description}
               onDelete={openModalHandler}
             />
           );
@@ -96,7 +98,7 @@ const AllLocations = () => {
       {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}
       {openModal && (
         <Modal onClose={closeModalHandler}>
-          <p>Do you want to delete location ({deleteId})?</p>
+          <p>Do you want to delete menu ({deleteId})?</p>
           <Button onClick={onDeleteHandler}>Delete</Button>
         </Modal>
       )}
@@ -104,4 +106,4 @@ const AllLocations = () => {
   );
 };
 
-export default AllLocations;
+export default AllMenus;

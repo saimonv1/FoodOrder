@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { login } from "../../services/auth.service";
 import { setUserData } from "../../storage/auth.storage";
@@ -6,6 +7,7 @@ import ErrorMessageSmall from "../UI/ErrorMessageSmall";
 import classes from "./AuthForm.module.css";
 
 const LoginForm = (props) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
@@ -17,9 +19,10 @@ const LoginForm = (props) => {
 
     login(email, password)
       .then((res) => {
-        setUserData(res.accessToken, res.refreshToken);
+        setUserData(res.accessToken, res.refreshToken, dispatch);
+        //console.log('set works');
         setError(null);
-        navigate("/");
+        navigate("/", { replace: true });
       })
       .catch((e) => {
         console.log(e?.response?.data?.message);

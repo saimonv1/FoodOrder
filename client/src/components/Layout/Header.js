@@ -1,11 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { getUserData } from "../../storage/auth.storage";
+import { authActions } from "../../store/auth-slice";
 import classes from "./Header.module.css";
 
 const Header = (props) => {
-  const user = getUserData();
-  console.log(user);
+  const dispatch = useDispatch();
+  //const user = getUserData();
+  const user = useSelector((state) => state.auth.user);
+  //console.log(user);
+  //console.log(user["role"]);
+  useEffect(() => {
+    dispatch(authActions.changeUser({
+      user: getUserData(),
+    }));
+  }, [dispatch]);
 
   return (
     <header className={classes.header}>

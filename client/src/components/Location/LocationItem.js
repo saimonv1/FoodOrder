@@ -7,7 +7,7 @@ const LocationItem = (props) => {
     var navigate = useNavigate();
 
     const onEditHandler = (event) => {
-        navigate(`/editLocation/${props.id}`, { replace: true });
+        navigate(`/editLocation/${props.id}`);
     };
 
     const onDeleteHandler = (event) => {
@@ -15,7 +15,7 @@ const LocationItem = (props) => {
     };
 
     const onMenuHandler = (event) => {
-
+        navigate(`/locations/${props.id}/menus`);
     };
 
     return (

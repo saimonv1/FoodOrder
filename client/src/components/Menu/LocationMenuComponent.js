@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MenuItemComponent from "./MenuItemComponent";
+import MenuItem from "./MenuItem";
 import Loading from "../UI/Loading";
 import { useParams } from "react-router-dom";
 import { getMenus } from "../../services/menu.service";
@@ -38,7 +38,7 @@ const LocationMenuComponent = () => {
       {!isLoading && !error &&
       menus?.map((menu) => {
         return (
-          <MenuItemComponent id={menu._id} key={menu._id} name={menu.name} description={menu.description} />
+          <MenuItem id={menu._id} key={menu._id} name={menu.name} description={menu.description} />
         );
       })}
       {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}

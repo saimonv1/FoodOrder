@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import Loading from "../UI/Loading";
-import MenuDishesItemComponent from "./MenuDishesItemComponent";
 import { getDishes } from "../../services/dish.service";
 import ErrorMessage from "../UI/ErrorMessage";
 import Card from "../UI/Card";
+import DishItem from "./DishItem";
+import Button from "../UI/Button";
 
-const MenuDishesComponent = (props) => {
+const AllDishes = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [dishes, setDishes] = useState();
   const [error, setError] = useState(null);
@@ -32,14 +33,28 @@ const MenuDishesComponent = (props) => {
     }
   }, [locationId, menuId]);
   
+  const onAddHandler = (event) => {
+
+  };
+
   return (
     <Card>
-      <h1>Menu</h1>
+      <h1>Dishes</h1>
+      <div
+        style={{
+          position: "absolute",
+          margin: "0",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        <Button onClick={onAddHandler}>Add new dish</Button>
+      </div>
       {isLoading && <Loading />}
       {!isLoading && !error &&
         dishes?.map((dish) => {
           return (
-            <MenuDishesItemComponent
+            <DishItem
               key={dish._id}
               name={dish.name}
               description={dish.description}
@@ -52,4 +67,4 @@ const MenuDishesComponent = (props) => {
   );
 };
 
-export default MenuDishesComponent;
+export default AllDishes;

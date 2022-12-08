@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setUserData } from '../storage/auth.storage';
 import authHeader from './auth-header';
 
 const URL = "https://goldfish-app-ibq9e.ondigitalocean.app/api";
@@ -36,8 +37,9 @@ export const refresh = async (token) => {
     return res.data;
 };
 
-export const logout = async (refreshToken) => {
-    localStorage.removeItem("user");
+export const logout = async (refreshToken, dispatch) => {
+    //localStorage.removeItem("user");
+    setUserData(null, null, dispatch);
 
     const res = await authApi.delete('/tokens', {
         refreshToken

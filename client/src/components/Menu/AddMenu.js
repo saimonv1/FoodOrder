@@ -1,26 +1,28 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { addLocation } from "../../services/location.service";
+import { useNavigate, useParams } from "react-router-dom";
+import { addMenu } from "../../services/menu.service";
 import { getUserData } from "../../storage/auth.storage";
 import ErrorMessageSmall from "../UI/ErrorMessageSmall";
-import classes from "./AddLocation.module.css";
+import classes from "./AddMenu.module.css";
 
-const AddLocation = (props) => {
+const AddMenu = (props) => {
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+
+  const { locationId } = useParams();
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
 
-    const country = event.target.country.value;
-    const city = event.target.city.value;
-    const address = event.target.address.value;
+    const name = event.target.name.value;
+    const image = event.target.image.value;
+    const description = event.target.description.value;
 
-    addLocation(country, city, address)
+    addMenu(locationId, name, image, description)
       .then((res) => {
         console.log(res);
         setError(null);
-        navigate("/locations", { replace: true });
+        navigate(`/locations/${locationId}/menus`, { replace: true });
       })
       .catch((e) => {
         console.log(e?.response?.data?.message);
@@ -36,30 +38,30 @@ const AddLocation = (props) => {
   }, [navigate]);
 
   return (
-    <section className={classes.location}>
-      <h1>Add location</h1>
-      <h4>You can add location here.</h4>
+    <section className={classes.menu}>
+      <h1>Add menu</h1>
+      <h4>You can add menu here.</h4>
       <br />
       <form onSubmit={onSubmitHandler}>
         <div className={classes.control}>
-          <label htmlFor="country">Country</label>
-          <input type="text" id="country" required />
+          <label htmlFor="name">Name</label>
+          <input type="text" id="name" required />
         </div>
         <div className={classes.control}>
-          <label htmlFor="city">City</label>
-          <input type="text" id="city" required />
+          <label htmlFor="image">Image (url)</label>
+          <input type="text" id="image" required />
         </div>
         <div className={classes.control}>
-          <label htmlFor="address">Address</label>
-          <input type="text" id="address" required />
+          <label htmlFor="description">Description</label>
+          <input type="text" id="description" required />
         </div>
         {error && <ErrorMessageSmall>{error}</ErrorMessageSmall>}
         <div className={classes.actions}>
-          <button type="submit">Add location</button>
+          <button type="submit">Add menu</button>
         </div>
       </form>
     </section>
   );
 };
 
-export default AddLocation;
+export default AddMenu;
