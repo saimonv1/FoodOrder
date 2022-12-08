@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Loading from "../UI/Loading";
 import ErrorMessage from "../UI/ErrorMessage";
 import Card from "../UI/Card";
@@ -13,6 +13,8 @@ const AllMenus = () => {
   const navigate = useNavigate();
 
   const { locationId } = useParams();
+
+  const user = getUserData();
 
   const [menus, setMenus] = useState();
   const [isLoading, setIsLoading] = useState(true);
@@ -47,11 +49,6 @@ const AllMenus = () => {
   };
 
   useEffect(() => {
-    const user = getUserData();
-    if (!user || user?.role !== "Admin") {
-      navigate("/");
-    }
-
     getMenus(locationId)
       .then((res) => {
         setMenus(res);
@@ -69,17 +66,21 @@ const AllMenus = () => {
   return (
     <Card>
       <h1>Menus</h1>
-      <br />
-      <div
-        style={{
-          position: "absolute",
-          margin: "0",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-        }}
-      >
-        <Button onClick={onAddHandler}>Add new menu</Button>
-      </div>
+      {user?.role === "Admin" && (
+        <React.Fragment>
+          <br />
+          <div
+            style={{
+              position: "absolute",
+              margin: "0",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+            }}
+          >
+            <Button onClick={onAddHandler}>Add new menu</Button>
+          </div>
+        </React.Fragment>
+      )}
       {isLoading && <Loading />}
       {!isLoading &&
         !error &&

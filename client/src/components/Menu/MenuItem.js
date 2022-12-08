@@ -14,7 +14,7 @@ const MenuItem = (props) => {
     const { locationId } = params;
 
     const onClickHandler = (event) => {
-        navigate(`/locations/${locationId}/menu/${props.id}`, { replace: true });
+        navigate(`/locations/${locationId}/menus/${props.id}/dishes`, { replace: true });
     };
 
     const onEditHandler = (event) => {

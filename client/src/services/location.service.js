@@ -7,22 +7,17 @@ const api = axios.create({
     baseURL: URL,
 });
 
-const authApi = axios.create({
-    baseURL: URL,
-    headers: authHeader(),
-});
-
 export const getLocations = async () => {
     const res = await api.get(`/locations`, {});
     return res.data;
 };
 
 export const addLocation = async (country, city, address) => {
-    const res = await authApi.post(`/locations`, {
+    const res = await api.post(`/locations`, {
         country,
         city,
         address
-    });
+    }, {headers: authHeader()});
 
     return res.data;
 };
@@ -33,15 +28,15 @@ export const getLocation = async (locationId) => {
 };
 
 export const updateLocation = async (locationId, country, city, address) => {
-    const res = await authApi.patch(`/locations/${locationId}`, {
+    const res = await api.patch(`/locations/${locationId}`, {
         country,
         city,
         address
-    });
+    }, {headers: authHeader()});
     return res.data;
 }
 
 export const deleteLocation = async (locationId) => {
-    const res = await authApi.delete(`/locations/${locationId}`);
+    const res = await api.delete(`/locations/${locationId}`, {headers: authHeader()});
     return res.data;
 }

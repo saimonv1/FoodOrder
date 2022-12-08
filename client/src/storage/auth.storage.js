@@ -3,6 +3,9 @@ import { refresh } from "../services/auth.service";
 import { authActions } from "../store/auth-slice";
 
 export const getUserData = () => {
+    if(localStorage.getItem("user") === undefined) {
+        return null;
+    }
   const userData = localStorage.getItem("user");
   if (userData) {
     // if(jwt_decode(userData.accessToken).exp >= Date.now() / 1000) {

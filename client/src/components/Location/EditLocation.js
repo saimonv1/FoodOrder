@@ -32,7 +32,7 @@ const EditLocation = (props) => {
       .catch((e) => {
         console.log(e?.response?.data?.message);
         setError(e?.response?.data?.message || "Error");
-        navigate("/");
+        navigate("/", { replace: true });
       })
       .finally(() => setIsLoading(false));
   }, [locationId, navigate]);

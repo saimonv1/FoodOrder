@@ -8,11 +8,6 @@ const api = axios.create({
     baseURL: URL,
 });
 
-const authApi = axios.create({
-    baseURL: URL,
-    headers: authHeader()
-});
-
 export const login = async (email, password) => {
     const res = await api.post('/tokens', {
         email,
@@ -41,8 +36,8 @@ export const logout = async (refreshToken, dispatch) => {
     //localStorage.removeItem("user");
     setUserData(null, null, dispatch);
 
-    const res = await authApi.delete('/tokens', {
+    const res = await api.delete('/tokens', {
         refreshToken
-    });
+    }, {headers: authHeader()});
     return res.data;
 };
