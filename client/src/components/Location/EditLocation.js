@@ -19,7 +19,7 @@ const EditLocation = (props) => {
   useEffect(() => {
     const user = getUserData();
     if (!user || user?.role !== "Admin") {
-      navigate("/");
+      navigate("/", { replace: true });
     }
 
     getLocation(locationId)

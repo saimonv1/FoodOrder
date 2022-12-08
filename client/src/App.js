@@ -10,7 +10,6 @@ import AddLocation from './components/Location/AddLocation';
 import EditLocation from './components/Location/EditLocation';
 import AllLocations from './components/Location/AllLocations';
 import Panel from './components/Admin/Panel';
-import Logout from './components/Authenticate/Logout';
 import AllMenus from './components/Menu/AllMenus';
 import AddMenu from './components/Menu/AddMenu';
 import EditMenu from './components/Menu/EditMenu';
@@ -25,7 +24,6 @@ function App() {
         <Route path="/" element={<TitlePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/logout" element={<Logout />} />
 
         <Route path="/location" element={<Location />} />
         <Route path="/locations/" element={<AllLocations />} />

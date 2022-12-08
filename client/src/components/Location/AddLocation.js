@@ -31,7 +31,7 @@ const AddLocation = (props) => {
   useEffect(() => {
     const user = getUserData();
     if (!user || user?.role !== "Admin") {
-      navigate("/");
+      navigate("/", { replace: true });
     }
   }, [navigate]);
 
