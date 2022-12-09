@@ -1,16 +1,30 @@
-@import url('https://fonts.googleapis.com/css?family=Mukta');
+@import url("https://fonts.googleapis.com/css?family=Mukta");
+
+html {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+body {
+  height: 100vh;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  
+}
 
 body {
   margin: 0;
-  font-family: 'Mukta',
-    sans-serif;
+  font-family: "Mukta", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #ffffff;
-  background-image: url('./assets/background.jpg');
+  background-image: url("./assets/background.jpg");
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
