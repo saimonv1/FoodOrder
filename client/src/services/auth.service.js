@@ -41,3 +41,8 @@ export const logout = async (refreshToken, dispatch) => {
     }, {headers: authHeader()});
     return res.data;
 };
+
+export const getUserId = async (userName) => {
+    const res = await api.get(`/users/${userName}/userIds`, {headers: authHeader()});
+    return res.data;
+};

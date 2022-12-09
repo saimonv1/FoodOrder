@@ -4,7 +4,7 @@ const router = express.Router({ mergeParams: true });
 
 router.get("/", async (req, res) => {
   try {
-    const orders = await Order.find({ user: req.params.userId });
+    const orders = await Order.find({ user: req.params.userId }).populate('user').populate('dishes');
     res.status(200).json(orders);
   } catch (err) {
     res.status(404).json({ message: err });
