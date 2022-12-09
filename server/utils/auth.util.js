@@ -37,6 +37,10 @@ const verifyUser = async (authorizedUsername, neededUserId) => {
   }
 };
 
+const verifyUserUsername = async (authorizedUsername, neededUsername) => {
+  return authorizedUsername === neededUsername;
+}
+
 //Returns true if token is valid and not in blacklist, false if token is not valid
 const verifyTokenBlacklist = async (token) => {
   const accessTokenInDB = await AccessTokenBlackList.find({accessToken: token});
