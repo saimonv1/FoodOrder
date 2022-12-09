@@ -74,3 +74,58 @@
   color: white;
   background-color: #216e40;
 }
+
+.mobileMenuIcon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    min-width: 360px;
+  }
+
+  .navigation {
+    display: none;
+  }
+
+  .navigationMobile {
+    min-width: 360px;
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 100%;
+    transition: all 0.05s linear;
+    top: 5rem;
+    z-index: 10;
+  }
+
+  .button {
+    text-align: center;
+    width: 100%;
+    transition: all 0.05s linear;
+    border-bottom: 4px solid transparent;
+    border-radius: 0px;
+    border-top: 1px solid rgba(0, 0, 0, 0.5);
+  }
+
+  .button:hover {
+    border-bottom: 4px solid #216e40;
+  }
+
+  .button:active {
+    color: white;
+    background-color: #216e40;
+  }
+
+  .mobileMenuIcon {
+    display: block;
+    position: absolute;
+    font-size: 30px;
+    color: white;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    top: 15px;
+    right: 25px;
+  }
+}

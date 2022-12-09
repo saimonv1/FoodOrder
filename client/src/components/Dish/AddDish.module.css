@@ -61,3 +61,14 @@
   .actions button:active {
       
   }
+
+  @media (max-width: 768px) {
+    .dish {
+      position: absolute;
+      min-width: 360px;
+      width: 360px;
+    }
+    .control input {
+      width: 50%;
+    }
+  }

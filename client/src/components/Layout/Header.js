@@ -10,12 +10,14 @@ import classes from "./Header.module.css";
 
 const Header = (props) => {
   const dispatch = useDispatch();
-  
+
   const user = useSelector((state) => state.auth.user);
-  
+
   const navigate = useNavigate();
 
   const [openModal, setOpenModal] = useState(false);
+
+  const [isMobile, setIsMobile] = useState(false);
 
   const openModalHandler = (id) => {
     setOpenModal(true);
@@ -40,9 +42,11 @@ const Header = (props) => {
   };
 
   useEffect(() => {
-    dispatch(authActions.changeUser({
-      user: getUserData(),
-    }));
+    dispatch(
+      authActions.changeUser({
+        user: getUserData(),
+      })
+    );
   }, [dispatch]);
 
   return (
@@ -50,7 +54,11 @@ const Header = (props) => {
       <div className={classes.logo}>
         <NavLink to="/">No Hunger</NavLink>
       </div>
-      <div className={classes.navigation}>
+      {isMobile && <br />}
+      <div
+        onClick={() => setIsMobile(false)}
+        className={isMobile ? classes.navigationMobile : classes.navigation}
+      >
         {user && user.role === "Admin" && (
           <NavLink className={classes.button} to="/admin">
             Admin
@@ -66,9 +74,42 @@ const Header = (props) => {
         )}
         {user && (
           // eslint-disable-next-line jsx-a11y/anchor-is-valid
-          <a className={classes.button} onClick={openModalHandler}>Logout</a>
+          <a className={classes.button} onClick={openModalHandler}>
+            Logout
+          </a>
         )}
       </div>
+      <button
+        onClick={() => setIsMobile((state) => !state)}
+        className={classes.mobileMenuIcon}
+      >
+        {isMobile ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-x-lg"
+            viewBox="0 0 16 16"
+          >
+            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-list"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+            />
+          </svg>
+        )}
+      </button>
       {openModal && (
         <Modal onClose={closeModalHandler}>
           <p>Are you sure you want to logout?</p>
