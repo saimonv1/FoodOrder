@@ -51,4 +51,4 @@ const verifyTokenBlacklist = async (token) => {
   }
 }
 
-module.exports = { generateAccessToken, generateRefreshToken, verifyUser, verifyTokenBlacklist };
+module.exports = { generateAccessToken, generateRefreshToken, verifyUser, verifyUserUsername, verifyTokenBlacklist };

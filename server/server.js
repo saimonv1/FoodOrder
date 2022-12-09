@@ -43,6 +43,9 @@ app.use("/api/users", usersRoute);
 const ordersRouter = require("./routes/orders");
 app.use("/api/users/:userId/orders", authorization.authenticateTokenPersonal, ordersRouter);
 
+const userIdsRouter = require("./routes/usersIds");
+app.use("/api/users/:userName/userIds", authorization.authenticateTokenPersonalUsername, userIdsRouter);
+
 app.get("/api", (req, res) => {
   res.json("Hello World!");
 });
