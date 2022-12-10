@@ -21,7 +21,6 @@ const Cart = () => {
   const [openModal, setOpenModal] = useState(false);
   const [modalMessage, setModalMessage] = useState(null);
 
-
   const cartItems = useSelector((state) => state.cart.cartItems);
   const cartPrice = useSelector((state) => state.cart.totalPrice);
 
@@ -39,23 +38,23 @@ const Cart = () => {
     setIsLoading(true);
     const user = getUserData();
     getUserId(user.username)
-    .then((res) => {
+      .then((res) => {
         addOrder(res, cartItems)
-        .then((res2) => {
+          .then((res2) => {
             dispatch(cartActions.clearCart());
-            openModalHandler('Order was created from cart items');
-            navigate('/orders');
-        })
-        .catch((e) => {
+            openModalHandler("Order was created from cart items");
+            navigate("/orders");
+          })
+          .catch((e) => {
             console.log(e?.response?.data?.message);
             setError(e?.response?.data?.message || "Error");
-        });
-    })
-    .catch((e) => {
+          });
+      })
+      .catch((e) => {
         console.log(e?.response?.data?.message);
         setError(e?.response?.data?.message || "Error");
-    })
-    .finally(() => setIsLoading(false));
+      })
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {
@@ -63,26 +62,26 @@ const Cart = () => {
     if (!user) {
       navigate("/", { replace: true });
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <Card>
       <h1>Cart</h1>
       {cartItems?.map((dish) => {
-          return (
-            <CartItem
-              id={dish._id}
-              key={dish._id}
-              name={dish.name}
-              image={dish.image}
-              description={dish.description}
-              price={dish.price["$numberDecimal"]}
-              dish={dish}
-            />
-          );
-        })}
-        {cartPrice > 0 && <p>{cartPrice}€</p>}
-        {cartItems.length === 0 && "Cart is empty!"}
+        return (
+          <CartItem
+            id={dish._id}
+            key={dish._id}
+            name={dish.name}
+            image={dish.image}
+            description={dish.description}
+            price={dish.price["$numberDecimal"]}
+            dish={dish}
+          />
+        );
+      })}
+      {cartPrice > 0 && <p>{cartPrice}€</p>}
+      {cartItems.length === 0 && "Cart is empty!"}
       {cartItems.length > 0 && <Button onClick={onSaveHandler}>Order</Button>}
       {isLoading && <Loading />}
       {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}

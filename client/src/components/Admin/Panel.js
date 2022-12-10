@@ -23,10 +23,10 @@ const Panel = (props) => {
       <h1>Admin panel</h1>
       <div
         style={{
-          position: "absolute",
-          margin: "0",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
         }}
       >
         <Button onClick={onAllLocationsHandler}>All locations</Button>

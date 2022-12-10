@@ -19,12 +19,13 @@ const cartSlice = createSlice({
         return;
       }
       state.cartItems.push(action.payload.dish);
-      state.totalPrice = state.totalPrice + parseFloat(action.payload.dish.price["$numberDecimal"]);
-      state.totalPrice.toFixed(2);
+      const priceToAdd = parseFloat(action.payload.dish.price["$numberDecimal"]).toFixed(2);
+      state.totalPrice = state.totalPrice + priceToAdd;
     },
     removeDish(state, action) {
       state.cartItems = state.cartItems.filter((item) => item._id !== action.payload.dish._id);
-      state.totalPrice = state.totalPrice - parseFloat(action.payload.dish.price["$numberDecimal"]);
+      const priceToRemove = parseFloat(action.payload.dish.price["$numberDecimal"]).toFixed(2);
+      state.totalPrice = state.totalPrice - priceToRemove;
     },
     clearCart(state) {
       state.cartItems = [];
