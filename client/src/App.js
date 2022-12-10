@@ -17,6 +17,7 @@ import AllDishes from './components/Dish/AllDishes';
 import AddDish from './components/Dish/AddDish';
 import EditDish from './components/Dish/EditDish';
 import AllOrders from './components/Order/AllOrders';
+import Cart from './components/Cart/Cart';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
         <Route path="/locations/:locationId/menus/:menuId/editDish/:dishId" element={<EditDish />}/>
 
         <Route path="/orders/" element={<AllOrders />} />
+        <Route path="/cart/" element={<Cart />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

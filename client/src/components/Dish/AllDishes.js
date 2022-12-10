@@ -97,6 +97,7 @@ const AllDishes = (props) => {
               image={dish.image}
               description={dish.description}
               price={dish.price["$numberDecimal"]}
+              dish={dish}
               onDelete={openModalHandler}
             />
           );

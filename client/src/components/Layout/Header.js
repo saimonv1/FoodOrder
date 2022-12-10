@@ -69,6 +69,11 @@ const Header = (props) => {
             Orders
           </NavLink>
         )}
+        {user && (
+          <NavLink className={classes.button} to="/cart">
+            Cart
+          </NavLink>
+        )}
         <NavLink className={classes.button} to="/location">
           Location
         </NavLink>

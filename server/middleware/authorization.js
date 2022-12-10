@@ -22,12 +22,16 @@ const authenticateTokenPersonal = async (req, res, next) => {
   if (!token) return res.status(401).json({ message: "Not authorized" });
 
   if(!utils.verifyTokenBlacklist(token)) return res.status(401).json({ message: "Not authorized" });
+  
   await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, user) => {
     if (err) return res.status(403).json({ message: "Forbidden" });
+    
     if(!await utils.verifyUser(user.username, req.params.userId)) {
+      //console.log('work');
         return res.status(403).json({ message: "Forbidden" });
     }
     req.user = user;
+    
     next();
   });
 };

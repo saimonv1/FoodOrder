@@ -2,26 +2,52 @@ import React, { useEffect, useState } from "react";
 import Loading from "../UI/Loading";
 import ErrorMessage from "../UI/ErrorMessage";
 import Card from "../UI/Card";
-import Modal from "../UI/Modal";
-import Button from "../UI/Button";
 import { useNavigate } from "react-router-dom";
 import { getUserData } from "../../storage/auth.storage";
-import { getOrders } from "../../services/order.service";
+import { deleteOrder, getOrders } from "../../services/order.service";
 import { getUserId } from "../../services/auth.service";
 import OrderItem from "./OrderItem";
+import Modal from "../UI/Modal";
+import Button from "../UI/Button";
 
 const AllOrders = () => {
   const navigate = useNavigate();
-
-  const user = getUserData();
 
   const [orders, setOrders] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const onDeleteHandler = () => {};
+  const [openModal, setOpenModal] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
 
-  const onAddHandler = () => {};
+  const openModalHandler = (id) => {
+    setOpenModal(true);
+    setDeleteId(id);
+  };
+
+  const closeModalHandler = () => {
+    setOpenModal(false);
+    setDeleteId();
+  };
+
+  const onDeleteHandler = () => {
+    const user = getUserData();
+
+    getUserId(user.username)
+    .then((res) => {
+        deleteOrder(res, deleteId)
+        .then((res2) => {
+            console.log(res2);
+            setOpenModal(false);
+        })
+        .catch((e) => {
+            console.log(e?.response?.data?.message);
+        });
+    })
+    .catch((e) => {
+        console.log(e?.response?.data?.message);
+    });
+  };
 
   useEffect(() => {
     const user = getUserData();
@@ -35,7 +61,6 @@ const AllOrders = () => {
         getOrders(userId)
           .then((res2) => {
             setOrders(res2);
-            console.log(res2);
             setError(null);
           })
           .catch((e) => {
@@ -50,7 +75,7 @@ const AllOrders = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [navigate]);
 
   return (
     <Card>
@@ -59,9 +84,15 @@ const AllOrders = () => {
       {!isLoading &&
         !error &&
         orders?.map((order) => {
-          return <OrderItem id={order._id} key={order._id} order={order} />;
+          return <OrderItem id={order._id} key={order._id} order={order} onDelete={openModalHandler} />;
         })}
       {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}
+      {openModal && (
+        <Modal onClose={closeModalHandler}>
+          <p>Are you sure you want to delete order ({deleteId})?</p>
+          <Button onClick={onDeleteHandler}>Delete</Button>
+        </Modal>
+      )}
     </Card>
   );
 };

@@ -1,4 +1,4 @@
-.dishitem {
+.cartitem {
   margin: 3rem auto;
   width: 75%;
   max-width: 75rem;
@@ -11,7 +11,7 @@
   color: black;
 }
 
-.dishitem img {
+.cartitem img {
   max-width: 60%;
   min-width: 18rem;
 }

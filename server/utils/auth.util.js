@@ -26,11 +26,8 @@ const generateRefreshToken = (user) => {
 };
 
 const verifyUser = async (authorizedUsername, neededUserId) => {
-  console.log(authorizedUsername);
-  console.log(neededUserId);
   const authorizedUser = await User.findOne({ username: authorizedUsername });
-  if (authorizedUser.id === neededUserId) {
-    console.log(authorizedUser.id);
+  if (authorizedUser._id.toString() === neededUserId) {
     return true;
   } else {
     return false;

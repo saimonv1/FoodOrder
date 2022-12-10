@@ -41,7 +41,7 @@ router.get("/:orderId", async (req, res) => {
         .status(404)
         .json({ message: "Order with this ID doesn't exist!" });
 
-    if (order.user.id != req.params.userId) {
+    if (order.user._id.toString() != req.params.userId) {
       return res.status(403).json("Forbidden");
     }
     res.status(200).json(order);
@@ -58,7 +58,8 @@ router.delete("/:orderId", async (req, res) => {
         .status(404)
         .json({ message: "Order with this ID doesn't exist!" });
 
-    if (order.user.id != req.params.userId) {
+    if (order.user._id.toString() != req.params.userId) {
+      console.log('rip');
       return res.status(403).json("Forbidden");
     }
     const removedOrder = await Order.deleteOne({
@@ -85,7 +86,7 @@ router.patch("/:orderId", async (req, res) => {
 
   try {
     const order = await Order.findById(req.params.orderId);
-    if (order.user.id != req.params.userId) {
+    if (order.user._id.toString() != req.params.userId) {
       return res.status(403).json("Forbidden");
     }
     if (!order)

@@ -79,11 +79,7 @@
   display: none;
 }
 
-@media (max-width: 768px) {
-  .header {
-    min-width: 408px;
-  }
-
+@media (max-width: 1160px) {
   .navigation {
     display: none;
   }
@@ -127,5 +123,11 @@
     outline: none;
     top: 15px;
     right: 25px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    min-width: 408px;
   }
 }
