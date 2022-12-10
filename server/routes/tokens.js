@@ -76,7 +76,7 @@ router.put("/", async (req, res) => {
 });
 
 //Logout
-router.delete("/", authorization.authenticateTokenPersonal, async (req, res) => {
+router.delete("/:userId", authorization.authenticateTokenPersonal, async (req, res) => {
     try {
       const refreshToken = await RefreshToken.findOne({
         refreshToken: req.body.token,

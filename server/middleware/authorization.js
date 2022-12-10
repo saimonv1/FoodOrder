@@ -33,12 +33,10 @@ const authenticateTokenPersonal = async (req, res, next) => {
     process.env.ACCESS_TOKEN_SECRET,
     async (err, user) => {
       if (err) return res.status(401).json({ message: "Not authorized" });
-
       if (!(await utils.verifyUser(user.username, req.params.userId))) {
         return res.status(403).json({ message: "Forbidden" });
       }
       req.user = user;
-
       next();
     }
   );
