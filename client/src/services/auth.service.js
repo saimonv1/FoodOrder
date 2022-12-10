@@ -1,12 +1,13 @@
-import axios from 'axios';
+//import axios from 'axios';
 import { setUserData } from '../storage/auth.storage';
 import authHeader from './auth-header';
+import api from './api.js';
 
-const URL = "https://goldfish-app-ibq9e.ondigitalocean.app/api";
+// const URL = "https://goldfish-app-ibq9e.ondigitalocean.app/api";
 
-const api = axios.create({
-    baseURL: URL,
-});
+// const api = axios.create({
+//     baseURL: URL,
+// });
 
 export const login = async (email, password) => {
     const res = await api.post('/tokens', {

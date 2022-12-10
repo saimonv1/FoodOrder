@@ -52,7 +52,7 @@ const Header = (props) => {
   return (
     <header className={classes.header}>
       <div className={classes.logo}>
-        <NavLink to="/">No Hunger</NavLink>
+        <NavLink to="/">Food Order</NavLink>
       </div>
       {isMobile && <br />}
       <div

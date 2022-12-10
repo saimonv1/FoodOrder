@@ -51,3 +51,9 @@ export const setUserData = (accessToken, refreshToken, dispatch) => {
   //     refreshUserData(refreshToken, dispatch);
   //   }, (decodedUser.exp - decodedUser.iat) * 1000);
 };
+
+export const updateUserAccessToken = (accessToken) => {
+  let user = localStorage.getItem("user");
+  user.accessToken = accessToken;
+  localStorage.setItem("user", user);
+}
