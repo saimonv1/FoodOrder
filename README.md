@@ -33,3 +33,10 @@ Sistemos administratorius:
 9.  Kaip sistemos administratorius, noriu prie meniu pridėti naują patiekalą.
 10.  Kaip sistemos administratorius, noriu redaguoti patiekalą.
 11.  Kaip sistemos administratorius, noriu iš meniu pašalinti patiekalą.
+
+# API
+
+| First Header  | Second Header |
+| ------------- | ------------- |
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
