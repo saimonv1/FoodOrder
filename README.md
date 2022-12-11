@@ -50,7 +50,9 @@ Sistemos administratorius:
 | Example Body | <!-- --> |
 
 Example Response: 200 OK
+
 Example Response Body: 
+
 [
     {
         "_id": "633f0d09798d5c219b3d1d20",
