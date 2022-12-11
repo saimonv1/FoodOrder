@@ -38,7 +38,7 @@ Sistemos administratorius:
 
 ## Locations
 
-| <!-- -->    | <!-- -->    |
+| Locations | /locations/ |
 |-------------|-------------|
 | URL | /locations/ |
 | Method | GET |
@@ -46,8 +46,6 @@ Sistemos administratorius:
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
-
-
 
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
@@ -58,8 +56,6 @@ Sistemos administratorius:
 | HTTP responses | 201 - success, 400 - wrong parameters |
 | Requires authentication | Yes, admin |
 
-
-
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
 | URL | /locations/{locationId} |
@@ -68,8 +64,6 @@ Sistemos administratorius:
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
-
-
 
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
@@ -80,8 +74,6 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, admin |
 
-
-
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
 | URL | /locations/ |
@@ -90,8 +82,6 @@ Sistemos administratorius:
 | Parameters | Country (string), City (string), Address (string) |
 | HTTP responses | 200 - success, 400 - wrong parameters 404 - not found |
 | Requires authentication | Yes, admin |
-
-
 
 ## Menus
 
@@ -104,8 +94,6 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
-
-
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/ |
@@ -114,8 +102,6 @@ Sistemos administratorius:
 | Parameters | Name (string), Image (string), Description (string) |
 | HTTP responses | 201 - success, 400 - wrong parameters |
 | Requires authentication | Yes, admin |
-
-
 
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
@@ -126,8 +112,6 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
-
-
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId} |
@@ -137,8 +121,6 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, admin |
 
-
-
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId} |
@@ -147,8 +129,6 @@ Sistemos administratorius:
 | Parameters | Name (string), Image (string), Description (string) |
 | HTTP responses | 200 - success, 400 - wrong parameters, 404 - not found |
 | Requires authentication | Yes, admin |
-
-
 
 ## Dishes
 
@@ -161,8 +141,6 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
-
-
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId}/dishes |
@@ -171,8 +149,6 @@ Sistemos administratorius:
 | Parameters | Name (string), Image (string), Description (string), Price (string) |
 | HTTP responses | 200 - success, 400 - wrong arguments |
 | Requires authentication | Yes, admin |
-
-
 
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
@@ -183,8 +159,6 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
-
-
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
@@ -193,8 +167,6 @@ Sistemos administratorius:
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, admin |
-
-
 
 | <!-- -->    | <!-- -->    |
 |-------------|-------------|
@@ -205,15 +177,5 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, admin |
 
-
-
 ## Orders
 
-| <!-- -->    | <!-- -->    |
-|-------------|-------------|
-| URL | /locations/{locationId}/menus/{menuId}/dishes |
-| Method | GET |
-| Description | Get all dishes of a certain menu of a certain location |
-| Parameters | <!-- --> |
-| HTTP responses | 200 - success, 404 - not found |
-| Requires authentication | No |
