@@ -12,7 +12,9 @@ const utils = require("../utils/auth.util");
 router.get("/", authorization.authenticateTokenAdmin, async (req, res) => {
   try {
     const users = await User.find();
-    res.status(200).json(users);
+    res.status(200).json(users.forEach(user => {
+      delete object['password'];
+    }));
   } catch (err) {
     res.status(404).json({ message: err });
   }
@@ -111,7 +113,14 @@ router.patch("/:userId/roles", authorization.authenticateTokenAdmin, async (req,
     const updatedUser = await User.findByIdAndUpdate(req.params.userId, {
       role: req.body.role
     });
-    res.status(200).json(updatedUser);
+    const returnUser = {
+      email: updatedUser.email,
+      joinDate: updatedUser.joinDate,
+      lastJoinDate: updatedUser.lastJoinDate,
+      role: updatedUser.role,
+      username: updatedUser.username
+    };
+    res.status(200).json(returnUser);
   } catch (err) {
     res.status(500).json({ message: err });
   }

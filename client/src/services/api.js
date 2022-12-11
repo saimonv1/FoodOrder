@@ -45,6 +45,8 @@ instance.interceptors.response.use(
           const { accessToken } = rs.data;
           updateUserAccessToken(accessToken);
 
+          console.log('refreshed token');
+
           return instance(originalConfig);
         } catch (_error) {
           return Promise.reject(_error);
