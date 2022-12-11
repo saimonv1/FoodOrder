@@ -19,6 +19,7 @@ const AllDishes = (props) => {
 
   const [openModal, setOpenModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
+  const [deleteItem, setDeleteItem] = useState(null);
 
   const user = getUserData();
 
@@ -46,14 +47,16 @@ const AllDishes = (props) => {
     navigate(`/locations/${locationId}/menus/${menuId}/addDish`);
   };
 
-  const openModalHandler = (id) => {
+  const openModalHandler = (id, name) => {
     setOpenModal(true);
     setDeleteId(id);
+    setDeleteItem(name);
   };
 
   const closeModalHandler = () => {
     setOpenModal(false);
     setDeleteId();
+    setDeleteItem();
   };
 
   const onDeleteHandler = () => {
@@ -105,7 +108,7 @@ const AllDishes = (props) => {
       {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}
       {openModal && (
         <Modal onClose={closeModalHandler}>
-          <p>Do you want to delete dish ({deleteId})?</p>
+          <p>Do you want to delete dish "{deleteItem}"?</p>
           <Button onClick={onDeleteHandler}>Delete</Button>
         </Modal>
       )}

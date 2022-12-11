@@ -32,6 +32,7 @@ const AddLocation = (props) => {
   useEffect(() => {
     const user = getUserData();
     if (!user || user?.role !== "Admin") {
+      console.log('no access');
       navigate("/", { replace: true });
     }
   }, [navigate]);

@@ -27,7 +27,7 @@ const DishItem = (props) => {
   };
 
   const onDeleteHandler = (event) => {
-    props.onDelete(props.id);
+    props.onDelete(props.id, props.name);
   };
 
   return (

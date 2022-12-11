@@ -5,7 +5,7 @@ import TitlePage from './pages/Utility/TitlePage';
 import NotFound from './pages/Utility/NotFound';
 import Login from './pages/Authenticate/Login';
 import Register from './pages/Authenticate/Register';
-import Location from './pages/Main/Location';
+import Location from './components/Location/LocationForm';
 import AddLocation from './components/Location/AddLocation';
 import EditLocation from './components/Location/EditLocation';
 import AllLocations from './components/Location/AllLocations';
@@ -18,6 +18,7 @@ import AddDish from './components/Dish/AddDish';
 import EditDish from './components/Dish/EditDish';
 import AllOrders from './components/Order/AllOrders';
 import Cart from './components/Cart/Cart';
+import Users from './components/Admin/Users';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/locations/:locationId/menus/:menuId/dishes" element={<AllDishes />} />
 
         <Route path="/admin/" element={<Panel />} />
+        <Route path="/users/" element={<Users />} />
 
         <Route path="/addLocation" element={<AddLocation />} />
         <Route path="/editLocation/:locationId/" element={<EditLocation />} />

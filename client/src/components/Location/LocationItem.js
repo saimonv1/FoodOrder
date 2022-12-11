@@ -11,7 +11,7 @@ const LocationItem = (props) => {
     };
 
     const onDeleteHandler = (event) => {
-        props.onDelete(props.id);
+        props.onDelete(props.id, props.country, props.city, props.address);
     };
 
     const onMenuHandler = (event) => {

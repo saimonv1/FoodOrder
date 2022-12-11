@@ -18,15 +18,18 @@ const AllLocations = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
+  const [deleteItem, setDeleteItem] = useState();
 
-  const openModalHandler = (id) => {
+  const openModalHandler = (id, country, city, address) => {
     setOpenModal(true);
     setDeleteId(id);
+    setDeleteItem({ country, city, address });
   };
 
   const closeModalHandler = () => {
     setOpenModal(false);
     setDeleteId();
+    setDeleteItem();
   };
 
   const onDeleteHandler = () => {
@@ -43,6 +46,7 @@ const AllLocations = () => {
   useEffect(() => {
     const user = getUserData();
     if (!user || user?.role !== "Admin") {
+      console.log('no access');
       navigate("/");
     }
 
@@ -72,7 +76,7 @@ const AllLocations = () => {
           justifyContent: "center"
         }}
       >
-        <Button onClick={() => {navigate(-1)}}>Add new location</Button>
+        <Button onClick={() => {navigate("/addLocation")}}>Add new location</Button>
       </div>
       {isLoading && <Loading />}
       {!isLoading &&
@@ -92,7 +96,7 @@ const AllLocations = () => {
       {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}
       {openModal && (
         <Modal onClose={closeModalHandler}>
-          <p>Do you want to delete location ({deleteId})?</p>
+          <p>Do you want to delete location "{deleteItem.country}, {deleteItem.city}, {deleteItem.address}"?</p>
           <Button onClick={onDeleteHandler}>Delete</Button>
         </Modal>
       )}

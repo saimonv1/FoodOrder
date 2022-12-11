@@ -11,6 +11,10 @@ const Panel = (props) => {
     navigate("/locations");
   };
 
+  const onAllUsersHandler = (event) => {
+    navigate("/users");
+  };
+
   useEffect(() => {
     const user = getUserData();
     if (!user || user?.role !== "Admin") {
@@ -30,6 +34,7 @@ const Panel = (props) => {
         }}
       >
         <Button onClick={onAllLocationsHandler}>All locations</Button>
+        <Button onClick={onAllUsersHandler}>All users</Button>
       </div>
     </Card>
   );

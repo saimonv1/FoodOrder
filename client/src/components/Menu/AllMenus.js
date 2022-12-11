@@ -22,15 +22,18 @@ const AllMenus = () => {
 
   const [openModal, setOpenModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
+  const [deleteItem, setDeleteItem] = useState(null);
 
-  const openModalHandler = (id) => {
+  const openModalHandler = (id, name) => {
     setOpenModal(true);
     setDeleteId(id);
+    setDeleteItem(name);
   };
 
   const closeModalHandler = () => {
     setOpenModal(false);
     setDeleteId();
+    setDeleteItem();
   };
 
   const onDeleteHandler = () => {
@@ -99,7 +102,7 @@ const AllMenus = () => {
       {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}
       {openModal && (
         <Modal onClose={closeModalHandler}>
-          <p>Do you want to delete menu ({deleteId})?</p>
+          <p>Do you want to delete menu "{deleteItem}"?</p>
           <Button onClick={onDeleteHandler}>Delete</Button>
         </Modal>
       )}

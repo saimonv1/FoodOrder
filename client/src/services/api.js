@@ -2,8 +2,8 @@ import axios from "axios";
 import { getUserData, updateUserAccessToken } from "../storage/auth.storage";
 
 const instance = axios.create({
-  //baseURL: "https://goldfish-app-ibq9e.ondigitalocean.app/api",
-  baseURL: "http://localhost:4000/api",
+  baseURL: "https://goldfish-app-ibq9e.ondigitalocean.app/api",
+  //baseURL: "http://localhost:4000/api",
   headers: {
     "Content-Type": "application/json",
   },
@@ -30,8 +30,8 @@ instance.interceptors.response.use(
     const originalConfig = err.config;
 
     if (
-      originalConfig.url !== "/tokens" &&
-      originalConfig.url !== "/users" &&
+      !(originalConfig.url === "/tokens" &&
+      originalConfig.method === "put") &&
       err.response
     ) {
       if (err.response.status === 401 && !originalConfig._retry) {

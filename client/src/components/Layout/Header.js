@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { getUserId, logout } from "../../services/auth.service";
-import { getUserData } from "../../storage/auth.storage";
+import { getUserData, setUserData } from "../../storage/auth.storage";
 import { authActions } from "../../store/auth-slice";
 import Button from "../UI/Button";
 import Modal from "../UI/Modal";
@@ -39,9 +39,11 @@ const Header = (props) => {
           });
       })
       .catch((e) => {
+        console.log('cant get user id');
         console.log(e?.response?.data?.message);
       })
       .finally(() => {
+        setUserData(null, null, dispatch);
         setOpenModal(false);
         navigate("/", { replace: true });
       });
