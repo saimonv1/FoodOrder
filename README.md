@@ -39,7 +39,88 @@ Sistemos administratorius:
 
 ## Sistemos architektūra
 
+### Deployment diagram
+
 ![Deployment diagram](https://i.imgur.com/JeZT04a.png)
+
+## Naudotojo sąsaja
+
+<details>
+<summary>Naudotojo sąsaja</summary>
+
+### Pagrindinis puslapis
+
+
+
+### Lokacijų sąrašas
+
+
+
+### Lokacijos pridėjimas
+
+
+
+### Lokacijos redagavimas
+
+
+
+### Lokacijos trynimas
+
+
+
+### Meniu sąrašas
+
+
+
+### Meniu pridėjimas
+
+
+
+### Meniu redagavimas
+
+
+
+### Meniu trynimas
+
+
+
+### Patiekalų sąrašas
+
+
+
+### Patiekalo pridėjimas
+
+
+
+### Patiekalo redagavimas
+
+
+
+### Patiekalo trynimas
+
+
+
+### Užsakymai
+
+
+
+### Krepšelis
+
+
+
+### Admin panelė
+
+
+
+### Vartotojų sąrašas
+
+
+
+### Vartotojo rolės keitimas
+
+
+
+</details>
 
 ## API
 
