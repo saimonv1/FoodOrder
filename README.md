@@ -230,6 +230,47 @@ Example Response Body:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
+#### Example
+Example Request: GET /locations/633f0d09798d5c219b3d1d20/menus
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+[
+    {
+        "_id": "634344dd3f4278ff0e6a1394",
+        "name": "Sushi",
+        "description": "Most japanese thing you've ever tasted!",
+        "creationDate": "2022-10-09T22:02:05.325Z",
+        "lastUpdateDate": "2022-12-11T01:19:48.612Z",
+        "location": "633f0d09798d5c219b3d1d20",
+        "__v": 0,
+        "image": "https://media.istockphoto.com/id/1053854126/photo/all-you-can-eat-sushi.jpg?s=170667a&w=0&k=20&c=5yy6ncoY2JjqBtIQszD8fFHyV0PYkBtJYPTCIfRpvVA="
+    },
+    {
+        "_id": "6343453d3f4278ff0e6a1396",
+        "name": "Traditional food",
+        "description": "Stick to the tradition!",
+        "creationDate": "2022-10-09T22:03:41.544Z",
+        "lastUpdateDate": "2022-12-11T00:13:43.511Z",
+        "location": "633f0d09798d5c219b3d1d20",
+        "__v": 0,
+        "image": "https://www.chefspencil.com/wp-content/uploads/All-Aspects-of-German-Cuisine.jpg"
+    },
+    {
+        "_id": "6391f4f638348b4f8be9fdf6",
+        "name": "asd",
+        "description": "sdsdsdsd",
+        "creationDate": "2022-12-08T14:30:14.672Z",
+        "lastUpdateDate": "2022-12-08T14:30:19.031Z",
+        "location": "633f0d09798d5c219b3d1d20",
+        "__v": 0
+    }
+]
+```
+
 ### Add a new menu to a location
 | Menus | /locations/{locationId}/menus/ |
 |-------------|-------------|
@@ -238,6 +279,39 @@ Example Response Body:
 | Parameters | Name (string), Image (string), Description (string) |
 | HTTP responses | 201 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, admin |
+
+#### Example
+Example Request: POST /locations/633f0d09798d5c219b3d1d20/menus
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Request Body:
+```
+{
+    "name": "Traditional food",
+    "image": "https://i.imgur.com/JeZT04a.png",
+    "description": "Stick to the tradition!"
+}
+```
+
+Example Response: 201 Created
+
+Example Response Body: 
+```
+{
+    "name": "Traditional food",
+    "image": "https://i.imgur.com/JeZT04a.png",
+    "description": "Stick to the tradition!",
+    "creationDate": "2022-12-11T21:40:25.747Z",
+    "lastUpdateDate": "2022-12-11T21:40:25.747Z",
+    "location": "633f0d09798d5c219b3d1d20",
+    "_id": "63964e49a2d927f3f270eed2",
+    "__v": 0
+}
+```
 
 ### Get a single menu of a certain location
 | Menus | /locations/{locationId}/menus/{menuId} |
@@ -248,6 +322,26 @@ Example Response Body:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
+#### Example
+Example Request: GET /locations/633f0d09798d5c219b3d1d20/menus/63964e49a2d927f3f270eed2
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "_id": "63964e49a2d927f3f270eed2",
+    "name": "Traditional food",
+    "image": "https://i.imgur.com/JeZT04a.png",
+    "description": "Stick to the tradition!",
+    "creationDate": "2022-12-11T21:40:25.747Z",
+    "lastUpdateDate": "2022-12-11T21:40:25.747Z",
+    "location": "633f0d09798d5c219b3d1d20",
+    "__v": 0
+}
+```
+
 ### Delete a menu of a certain location
 | Menus | /locations/{locationId}/menus/{menuId} |
 |-------------|-------------|
@@ -257,6 +351,25 @@ Example Response Body:
 | HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
 
+#### Example
+Example Request: DELETE /locations/633f0d09798d5c219b3d1d20/menus/63964e49a2d927f3f270eed2
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "acknowledged": true,
+    "deletedCount": 1
+}
+```
+
 ### Update a menu of a certain location
 | Menus | /locations/{locationId}/menus/{menuId} |
 |-------------|-------------|
@@ -265,6 +378,39 @@ Example Response Body:
 | Parameters | Name (string), Image (string), Description (string) |
 | HTTP responses | 200 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
+
+#### Example
+Example Request: PATCH /locations/633f0d09798d5c219b3d1d20/menus/63964e49a2d927f3f270eed2
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Request Body:
+```
+{
+    "name": "Traditional food",
+    "image": "https://i.imgur.com/JeZT04a.png",
+    "description": "Stick to the tradition!"
+}
+```
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "name": "Traditional food",
+    "image": "https://i.imgur.com/JeZT04a.png",
+    "description": "Stick to the tradition!",
+    "creationDate": "2022-12-11T21:40:25.747Z",
+    "lastUpdateDate": "2022-12-11T21:40:25.747Z",
+    "location": "633f0d09798d5c219b3d1d20",
+    "_id": "63964e49a2d927f3f270eed2",
+    "__v": 0
+}
+```
 
 ## Dishes
 
