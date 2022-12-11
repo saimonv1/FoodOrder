@@ -1184,3 +1184,9 @@ Example Response Body:
 "6362c5992336780314bc384a"
 ```
 </details>
+
+## Išvados
+
+Projektas buvo atliktas sėkmingai, visi to tikslai yra išpildyti. Funkcionuoja tie kliento, tiek serverio pusė. Abi šios dalys komunikuoja RestAPI forma. Abi projekto dalys yra patalpintos debesyje ir lengvai pasiekiamos.
+
+Projekto metu buvo įgauta daug naudingos informacijos apie WEB aplikacijų kūrimą ir naujausias tendencijas.
