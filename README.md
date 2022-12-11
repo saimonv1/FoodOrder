@@ -43,7 +43,6 @@ Sistemos administratorius:
 |-------------|-------------|
 | URL | /locations/ |
 | Method | GET |
-| Description | Get all locations |
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
@@ -53,128 +52,127 @@ Sistemos administratorius:
 |-------------|-------------|
 | URL | /locations/ |
 | Method | POST |
-| Description | Add a new location |
 | Parameters | Country (string), City (string), Address (string) |
 | HTTP responses | 201 - success, 400 - wrong parameters |
 | Requires authentication | Yes, admin |
 
+### Get a location
 | Locations | /locations/{locationId} |
 |-------------|-------------|
 | URL | /locations/{locationId} |
 | Method | GET |
-| Description | Get a location |
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
+### Delete a location
 | Locations | /locations/{locationId} |
 |-------------|-------------|
 | URL | /locations/{locationId} |
 | Method | DELETE |
-| Description | Delete a location |
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, admin |
 
+### Update a location
 | Locations | /locations/{locationId} |
 |-------------|-------------|
 | URL | /locations/{locationId} |
 | Method | PATCH |
-| Description | Update a location |
 | Parameters | Country (string), City (string), Address (string) |
 | HTTP responses | 200 - success, 400 - wrong parameters 404 - not found |
 | Requires authentication | Yes, admin |
 
 ## Menus
 
+### Get all menus of a certain location
 | Menus | /locations/{locationId}/menus/ |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/ |
 | Method | GET |
-| Description | Get all menus of a certain location |
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
+### Add a new menu to a location
 | Menus | /locations/{locationId}/menus/ |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/ |
 | Method | POST |
-| Description | Add a new menu to a location |
 | Parameters | Name (string), Image (string), Description (string) |
 | HTTP responses | 201 - success, 400 - wrong parameters |
 | Requires authentication | Yes, admin |
 
+### Get a single menu of a certain location
 | Menus | /locations/{locationId}/menus/{menuId} |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId} |
 | Method | GET |
-| Description | Get a single menu of a certain location |
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
+### Delete a menu of a certain location
 | Menus | /locations/{locationId}/menus/{menuId} |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId} |
 | Method | DELETE |
-| Description | Delete a menu of a certain location |
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, admin |
 
+### Update a menu of a certain location
 | Menus | /locations/{locationId}/menus/{menuId} |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId} |
 | Method | PATCH |
-| Description | Update a menu of a certain location |
 | Parameters | Name (string), Image (string), Description (string) |
 | HTTP responses | 200 - success, 400 - wrong parameters, 404 - not found |
 | Requires authentication | Yes, admin |
 
 ## Dishes
 
+### Get all dishes of a certain menu of a certain location
 | Dishes | /locations/{locationId}/menus/{menuId}/dishes |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId}/dishes |
 | Method | GET |
-| Description | Get all dishes of a certain menu of a certain location |
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
+### Add a dish to a certain menu of a certain location
 | Dishes | /locations/{locationId}/menus/{menuId}/dishes |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId}/dishes |
 | Method | POST |
-| Description | Add a dish to a certain menu of a certain location |
 | Parameters | Name (string), Image (string), Description (string), Price (string) |
 | HTTP responses | 200 - success, 400 - wrong arguments |
 | Requires authentication | Yes, admin |
 
+### Get a dish from a certain menu of a certain location
 | Dishes | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 | Method | GET |
-| Description | Get a dish from a certain menu of a certain location |
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
+### Delete a dish from a certain menu of a certain location
 | Dishes | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 | Method | DELETE |
-| Description | Delete a dish from a certain menu of a certain location |
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, admin |
 
+### Update a dish of a certain menu of a certain location
 | Dishes | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 | Method | PATCH |
-| Description | Update a dish of a certain menu of a certain location |
 | Parameters | Name (string), Image (string), Description (string), Price (string) |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, admin |
