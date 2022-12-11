@@ -36,6 +36,8 @@ Sistemos administratorius:
 
 # API
 
+<details>
+<summary>API</summary>
 ## Locations
 
 ### Get all locations
@@ -1092,3 +1094,4 @@ Example Response Body:
 ```
 "6362c5992336780314bc384a"
 ```
+</details>
