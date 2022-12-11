@@ -46,8 +46,11 @@ Sistemos administratorius:
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
-| Example URL | GET /locations/ |
-| Example Body | <!-- --> |
+
+#### Example
+Example URL: GET /locations/ 
+
+Example Body: <!-- -->
 
 Example Response: 200 OK
 
