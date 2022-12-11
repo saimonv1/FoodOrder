@@ -50,7 +50,6 @@ Sistemos administratorius:
 #### Example
 Example URL: GET /locations/ 
 
-Example Body: <!-- -->
 
 Example Response: 200 OK
 
@@ -96,6 +95,37 @@ Example Response Body:
 | Parameters | Country (string), City (string), Address (string) |
 | HTTP responses | 201 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, admin |
+
+#### Example
+Example URL: POST /locations/ 
+
+Example headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Body:
+```
+{
+    "country": "Lithuania",
+    "city": "Vilnius",
+    "address": "Vilnius st. 39"
+}
+```
+
+
+Example Response: 201 Created
+
+Example Response Body: 
+```
+{
+    "country": "Lithuania",
+    "city": "Vilnius",
+    "address": "Vilnius st. 39",
+    "_id": "63964c1b8b991399cd75db76",
+    "__v": 0
+}
+```
 
 ### Get a location
 | Locations | /locations/{locationId} |
