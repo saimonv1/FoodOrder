@@ -97,6 +97,7 @@ Example Response Body:
 | Requires authentication | Yes, admin |
 
 #### Example
+##### Example request
 Example URL: POST /locations/ 
 
 Example headers: 
@@ -113,7 +114,7 @@ Example Body:
 }
 ```
 
-
+##### Example response
 Example Response: 201 Created
 
 Example Response Body: 
