@@ -34,6 +34,6 @@ Sistemos administratorius:
 10.  Kaip sistemos administratorius, noriu redaguoti patiekalą.
 11.  Kaip sistemos administratorius, noriu iš meniu pašalinti patiekalą.
 
-| <!-- -->    | <!-- -->    |
+| <!-- -->    a <!-- -->    |
 |-------------|-------------|
 | Foo         | Bar         |
