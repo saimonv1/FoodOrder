@@ -34,6 +34,11 @@ Sistemos administratorius:
 10.  Kaip sistemos administratorius, noriu redaguoti patiekalą.
 11.  Kaip sistemos administratorius, noriu iš meniu pašalinti patiekalą.
 
-| <!-- -->    a <!-- -->    |
+| <!-- -->    | <!-- -->    |
 |-------------|-------------|
-| Foo         | Bar         |
+| URL | /locations/ |
+| Method | GET |
+| Description | Get all locations |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 404 - not found |
+| Requires authentication | No |
