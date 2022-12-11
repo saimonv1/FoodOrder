@@ -38,6 +38,7 @@ Sistemos administratorius:
 
 ## Locations
 
+### Get all locations
 | Locations | /locations/ |
 |-------------|-------------|
 | URL | /locations/ |
@@ -47,6 +48,7 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
+### Add a new location
 | Locations | /locations/ |
 |-------------|-------------|
 | URL | /locations/ |
