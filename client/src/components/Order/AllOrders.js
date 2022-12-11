@@ -34,19 +34,19 @@ const AllOrders = () => {
     const user = getUserData();
 
     getUserId(user.username)
-    .then((res) => {
+      .then((res) => {
         deleteOrder(res, deleteId)
-        .then((res2) => {
+          .then((res2) => {
             console.log(res2);
             setOpenModal(false);
-        })
-        .catch((e) => {
+          })
+          .catch((e) => {
             console.log(e?.response?.data?.message);
-        });
-    })
-    .catch((e) => {
+          });
+      })
+      .catch((e) => {
         console.log(e?.response?.data?.message);
-    });
+      });
   };
 
   useEffect(() => {
@@ -75,7 +75,7 @@ const AllOrders = () => {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [navigate]);
+  }, [navigate, openModal]);
 
   return (
     <Card>
@@ -84,7 +84,14 @@ const AllOrders = () => {
       {!isLoading &&
         !error &&
         orders?.map((order) => {
-          return <OrderItem id={order._id} key={order._id} order={order} onDelete={openModalHandler} />;
+          return (
+            <OrderItem
+              id={order._id}
+              key={order._id}
+              order={order}
+              onDelete={openModalHandler}
+            />
+          );
         })}
       {!isLoading && error && <ErrorMessage>{error}</ErrorMessage>}
       {openModal && (

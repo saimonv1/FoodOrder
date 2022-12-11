@@ -8,6 +8,9 @@ const authorization = require("./middleware/authorization");
 const parameters = require("./middleware/parameters");
 
 const app = express();
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(bodyParser.json());
 app.use(cors());
 

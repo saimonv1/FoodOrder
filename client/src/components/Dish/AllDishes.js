@@ -40,7 +40,7 @@ const AllDishes = (props) => {
           setIsLoading(false);
         });
     }
-  }, [locationId, menuId]);
+  }, [openModal, locationId, menuId]);
 
   const onAddHandler = (event) => {
     navigate(`/locations/${locationId}/menus/${menuId}/addDish`);

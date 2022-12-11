@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { addDish } from "../../services/dish.service";
 import { getUserData } from "../../storage/auth.storage";
+import BackButton from "../UI/BackButton";
 import ErrorMessageSmall from "../UI/ErrorMessageSmall";
 import classes from "./AddDish.module.css";
 
@@ -40,6 +41,7 @@ const AddDish = (props) => {
 
   return (
     <section className={classes.dish}>
+      <BackButton />
       <h1>Add dish</h1>
       <h4>You can add dish here.</h4>
       <br />

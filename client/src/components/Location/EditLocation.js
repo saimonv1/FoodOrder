@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { updateLocation, getLocation } from "../../services/location.service";
 import { getUserData } from "../../storage/auth.storage";
+import BackButton from "../UI/BackButton";
 import ErrorMessageSmall from "../UI/ErrorMessageSmall";
 import Loading from "../UI/Loading";
 import classes from "./EditLocation.module.css";
@@ -57,6 +58,7 @@ const EditLocation = (props) => {
 
   return (
     <section className={classes.locations}>
+      <BackButton />
       <h1>Edit location</h1>
       <h4>You can edit location here.</h4>
       <br />
@@ -76,6 +78,7 @@ const EditLocation = (props) => {
         </div>
         {error && <ErrorMessageSmall>{error}</ErrorMessageSmall>}
         <div className={classes.actions}>
+          
           <button type="submit">Edit location</button>
         </div>
       </form>

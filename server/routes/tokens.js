@@ -76,10 +76,10 @@ router.put("/", async (req, res) => {
 });
 
 //Logout
-router.delete("/:userId", authorization.authenticateTokenPersonal, async (req, res) => {
+router.delete("/:token/users/:userId", authorization.authenticateTokenPersonal, async (req, res) => {
     try {
       const refreshToken = await RefreshToken.findOne({
-        refreshToken: req.body.token,
+        refreshToken: req.params.token,
       });
       if (!refreshToken)
         return res.status(404).json({ message: "Refresh Token not found!" });

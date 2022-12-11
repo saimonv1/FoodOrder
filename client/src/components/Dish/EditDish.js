@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getDish, updateDish } from "../../services/dish.service";
 import { getUserData } from "../../storage/auth.storage";
+import BackButton from "../UI/BackButton";
 import ErrorMessageSmall from "../UI/ErrorMessageSmall";
 import Loading from "../UI/Loading";
 import classes from "./EditDish.module.css";
@@ -60,6 +61,7 @@ const EditDish = (props) => {
 
   return (
     <section className={classes.dishes}>
+      <BackButton />
       <h1>Edit dish</h1>
       <h4>You can edit dish here.</h4>
       <br />

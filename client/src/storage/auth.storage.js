@@ -5,12 +5,6 @@ import { authActions } from "../store/auth-slice";
 export const getUserData = () => {
   const userData = localStorage.getItem("user");
   if (userData) {
-    // if(jwt_decode(userData.accessToken).exp >= Date.now() / 1000) {
-    //     refreshUserData(userData.refreshToken)
-    //     .then(() => {
-    //         return getUserData();
-    //     });
-    // }
     return JSON.parse(userData);
   }
   return null;
@@ -47,13 +41,10 @@ export const setUserData = (accessToken, refreshToken, dispatch) => {
       user: user,
     })
   );
-  //   setTimeout(() => {
-  //     refreshUserData(refreshToken, dispatch);
-  //   }, (decodedUser.exp - decodedUser.iat) * 1000);
 };
 
 export const updateUserAccessToken = (accessToken) => {
-  let user = localStorage.getItem("user");
+  let user = JSON.parse(localStorage.getItem("user"));
   user.accessToken = accessToken;
-  localStorage.setItem("user", user);
+  localStorage.setItem("user", JSON.stringify(user));
 }

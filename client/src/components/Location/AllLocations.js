@@ -40,10 +40,6 @@ const AllLocations = () => {
       });
   };
 
-  const onAddHandler = () => {
-    navigate(`/addLocation`);
-  };
-
   useEffect(() => {
     const user = getUserData();
     if (!user || user?.role !== "Admin") {
@@ -76,7 +72,7 @@ const AllLocations = () => {
           justifyContent: "center"
         }}
       >
-        <Button onClick={onAddHandler}>Add new location</Button>
+        <Button onClick={() => {navigate(-1)}}>Add new location</Button>
       </div>
       {isLoading && <Loading />}
       {!isLoading &&

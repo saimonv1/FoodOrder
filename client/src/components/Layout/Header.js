@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
-import { logout } from "../../services/auth.service";
+import { getUserId, logout } from "../../services/auth.service";
 import { getUserData } from "../../storage/auth.storage";
 import { authActions } from "../../store/auth-slice";
 import Button from "../UI/Button";
@@ -28,9 +28,15 @@ const Header = (props) => {
   };
 
   const onLogoutHandler = async () => {
-    logout(user.refreshToken, dispatch)
+    getUserId(user.username)
       .then((res) => {
-        navigate("/");
+        logout(user.refreshToken, res, dispatch)
+          .then((res2) => {
+            navigate("/");
+          })
+          .catch((e) => {
+            console.log(e?.response?.data?.message);
+          });
       })
       .catch((e) => {
         console.log(e?.response?.data?.message);

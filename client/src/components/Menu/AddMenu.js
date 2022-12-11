@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { addMenu } from "../../services/menu.service";
 import { getUserData } from "../../storage/auth.storage";
+import BackButton from "../UI/BackButton";
 import ErrorMessageSmall from "../UI/ErrorMessageSmall";
 import classes from "./AddMenu.module.css";
 
@@ -39,6 +40,7 @@ const AddMenu = (props) => {
 
   return (
     <section className={classes.menu}>
+      <BackButton />
       <h1>Add menu</h1>
       <h4>You can add menu here.</h4>
       <br />

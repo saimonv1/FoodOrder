@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addLocation } from "../../services/location.service";
 import { getUserData } from "../../storage/auth.storage";
+import BackButton from "../UI/BackButton";
 import ErrorMessageSmall from "../UI/ErrorMessageSmall";
 import classes from "./AddLocation.module.css";
 
@@ -37,6 +38,7 @@ const AddLocation = (props) => {
 
   return (
     <section className={classes.location}>
+      <BackButton />
       <h1>Add location</h1>
       <h4>You can add location here.</h4>
       <br />

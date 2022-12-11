@@ -59,9 +59,6 @@ h4 {
   background-color: #2d9657;
 }
 
-.actions button:active {
-}
-
 @media (max-width: 768px) {
   .dish {
     position: absolute;

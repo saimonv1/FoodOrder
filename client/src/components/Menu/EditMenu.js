@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { getMenu, updateMenu } from "../../services/menu.service";
 import { getUserData } from "../../storage/auth.storage";
+import BackButton from "../UI/BackButton";
 import ErrorMessageSmall from "../UI/ErrorMessageSmall";
 import Loading from "../UI/Loading";
 import classes from "./EditMenu.module.css";
@@ -9,6 +10,7 @@ import classes from "./EditMenu.module.css";
 const EditMenu = (props) => {
   const { locationId, menuId } = useParams();
   const navigate = useNavigate();
+
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -57,6 +59,7 @@ const EditMenu = (props) => {
 
   return (
     <section className={classes.menus}>
+      <BackButton />
       <h1>Edit menu</h1>
       <h4>You can edit menu here.</h4>
       <br />
