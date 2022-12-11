@@ -14,11 +14,11 @@ const MenuItem = (props) => {
     const { locationId } = params;
 
     const onClickHandler = (event) => {
-        navigate(`/locations/${locationId}/menus/${props.id}/dishes`, { replace: true });
+        navigate(`/locations/${locationId}/menus/${props.id}/dishes`);
     };
 
     const onEditHandler = (event) => {
-        navigate(`/locations/${locationId}/editMenu/${props.id}`, { replace: true });
+        navigate(`/locations/${locationId}/editMenu/${props.id}`);
     };
 
     const onDeleteHandler = (event) => {

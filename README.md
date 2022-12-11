@@ -50,75 +50,75 @@ Sistemos administratorius:
 
 ### Pagrindinis puslapis
 
-
+![Pagrindinis puslapis](https://i.imgur.com/YMQGWBW.png)
 
 ### Lokacijų sąrašas
 
-
+![Lokacijų sąrašas](https://i.imgur.com/1byEXsA.png)
 
 ### Lokacijos pridėjimas
 
-
+![Lokacijos pridėjimas](https://i.imgur.com/8dxMMAE.png)
 
 ### Lokacijos redagavimas
 
-
+![Lokacijos redagavimas](https://i.imgur.com/i9wccPH.png)
 
 ### Lokacijos trynimas
 
-
+![Lokacijos trynimas](https://i.imgur.com/oo6KbfN.png)
 
 ### Meniu sąrašas
 
-
+![Meniu sąrašas](https://i.imgur.com/Tyl76bX.png)
 
 ### Meniu pridėjimas
 
-
+![Meniu pridėjimas](https://i.imgur.com/qnUas22.png)
 
 ### Meniu redagavimas
 
-
+![Meniu redagavimas](https://i.imgur.com/08DucKs.png)
 
 ### Meniu trynimas
 
-
+![Meniu trynimas](https://i.imgur.com/MCFsGAA.png)
 
 ### Patiekalų sąrašas
 
-
+![Patiekalų sąrašas](https://i.imgur.com/pdoMKyk.png)
 
 ### Patiekalo pridėjimas
 
-
+![Patiekalo pridėjimas](https://i.imgur.com/8HrQGeq.png)
 
 ### Patiekalo redagavimas
 
-
+![Patiekalo redagavimas](https://i.imgur.com/eUhO3kA.png)
 
 ### Patiekalo trynimas
 
-
+![Patiekalo trynimas](https://i.imgur.com/nYA38Cc.png)
 
 ### Užsakymai
 
-
+![Užsakymai](https://i.imgur.com/AO8UPlW.png)
 
 ### Krepšelis
 
-
+![Krepšelis](https://i.imgur.com/mjn7bac.png)
 
 ### Admin panelė
 
-
+![DAdmin panelė](https://i.imgur.com/d2f2lNp.png)
 
 ### Vartotojų sąrašas
 
-
+![Vartotojų sąrašas](https://i.imgur.com/brsKdl9.png)
 
 ### Vartotojo rolės keitimas
 
-
+![Vartotojo rolės keitimas](https://i.imgur.com/wsgoybl.png)
 
 </details>
 
