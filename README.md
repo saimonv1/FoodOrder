@@ -47,7 +47,7 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
-| <!-- -->    | <!-- -->    |
+| Locations | /locations/ |
 |-------------|-------------|
 | URL | /locations/ |
 | Method | POST |
@@ -56,7 +56,7 @@ Sistemos administratorius:
 | HTTP responses | 201 - success, 400 - wrong parameters |
 | Requires authentication | Yes, admin |
 
-| <!-- -->    | <!-- -->    |
+| Locations | /locations/{locationId} |
 |-------------|-------------|
 | URL | /locations/{locationId} |
 | Method | GET |
@@ -65,7 +65,7 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
-| <!-- -->    | <!-- -->    |
+| Locations | /locations/{locationId} |
 |-------------|-------------|
 | URL | /locations/{locationId} |
 | Method | DELETE |
@@ -74,9 +74,9 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, admin |
 
-| <!-- -->    | <!-- -->    |
+| Locations | /locations/{locationId} |
 |-------------|-------------|
-| URL | /locations/ |
+| URL | /locations/{locationId} |
 | Method | PATCH |
 | Description | Update a location |
 | Parameters | Country (string), City (string), Address (string) |
@@ -85,7 +85,7 @@ Sistemos administratorius:
 
 ## Menus
 
-| <!-- -->    | <!-- -->    |
+| Menus | /locations/{locationId}/menus/ |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/ |
 | Method | GET |
@@ -94,7 +94,7 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
-| <!-- -->    | <!-- -->    |
+| Menus | /locations/{locationId}/menus/ |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/ |
 | Method | POST |
@@ -103,7 +103,7 @@ Sistemos administratorius:
 | HTTP responses | 201 - success, 400 - wrong parameters |
 | Requires authentication | Yes, admin |
 
-| <!-- -->    | <!-- -->    |
+| Menus | /locations/{locationId}/menus/{menuId} |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId} |
 | Method | GET |
@@ -112,7 +112,7 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
-| <!-- -->    | <!-- -->    |
+| Menus | /locations/{locationId}/menus/{menuId} |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId} |
 | Method | DELETE |
@@ -121,7 +121,7 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, admin |
 
-| <!-- -->    | <!-- -->    |
+| Menus | /locations/{locationId}/menus/{menuId} |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId} |
 | Method | PATCH |
@@ -132,7 +132,7 @@ Sistemos administratorius:
 
 ## Dishes
 
-| <!-- -->    | <!-- -->    |
+| Dishes | /locations/{locationId}/menus/{menuId}/dishes |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId}/dishes |
 | Method | GET |
@@ -141,7 +141,7 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
-| <!-- -->    | <!-- -->    |
+| Dishes | /locations/{locationId}/menus/{menuId}/dishes |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId}/dishes |
 | Method | POST |
@@ -150,16 +150,16 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 400 - wrong arguments |
 | Requires authentication | Yes, admin |
 
-| <!-- -->    | <!-- -->    |
+| Dishes | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 |-------------|-------------|
-| URL | /locations/{locationId}/menus/{menuId}/dishes/{dishId}} |
+| URL | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 | Method | GET |
 | Description | Get a dish from a certain menu of a certain location |
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
-| <!-- -->    | <!-- -->    |
+| Dishes | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 | Method | DELETE |
@@ -168,7 +168,7 @@ Sistemos administratorius:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, admin |
 
-| <!-- -->    | <!-- -->    |
+| Dishes | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 |-------------|-------------|
 | URL | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 | Method | PATCH |
