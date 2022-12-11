@@ -48,7 +48,7 @@ Sistemos administratorius:
 | Requires authentication | No |
 
 #### Example
-Example URL: GET /locations/ 
+Example Request: GET /locations/ 
 
 
 Example Response: 200 OK
@@ -97,15 +97,14 @@ Example Response Body:
 | Requires authentication | Yes, admin |
 
 #### Example
-##### Example request
-Example URL: POST /locations/ 
+Example Request: POST /locations/ 
 
-Example headers: 
+Example Request Headers: 
 ```
 Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
 ```
 
-Example Body:
+Example Request Body:
 ```
 {
     "country": "Lithuania",
@@ -114,7 +113,6 @@ Example Body:
 }
 ```
 
-##### Example response
 Example Response: 201 Created
 
 Example Response Body: 
@@ -137,6 +135,23 @@ Example Response Body:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
+#### Example
+Example Request: GET /locations/63964c1b8b991399cd75db76
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "_id": "63964c1b8b991399cd75db76",
+    "country": "Lithuania",
+    "city": "Vilnius",
+    "address": "Vilnius st. 39",
+    "__v": 0
+}
+```
+
 ### Delete a location
 | Locations | /locations/{locationId} |
 |-------------|-------------|
@@ -146,6 +161,25 @@ Example Response Body:
 | HTTP responses | 200 - success, 404 - not found, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, admin |
 
+#### Example
+Example Request: DELETE /locations/63964c1b8b991399cd75db76
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "acknowledged": true,
+    "deletedCount": 1
+}
+```
+
 ### Update a location
 | Locations | /locations/{locationId} |
 |-------------|-------------|
@@ -154,6 +188,36 @@ Example Response Body:
 | Parameters | Country (string), City (string), Address (string) |
 | HTTP responses | 200 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
+
+#### Example
+Example Request: PATCH /locations/63964c1b8b991399cd75db76
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Request Body:
+```
+{
+    "country": "Lithuania",
+    "city": "Vilnius",
+    "address": "Vilnius st. 39"
+}
+```
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "country": "Lithuania",
+    "city": "Vilnius",
+    "address": "Vilnius st. 39",
+    "_id": "63964c1b8b991399cd75db76",
+    "__v": 0
+}
+```
 
 ## Menus
 
