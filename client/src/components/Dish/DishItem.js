@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import { getUserData } from "../../storage/auth.storage";
@@ -10,6 +10,8 @@ const DishItem = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [activated, setActivated] = useState(false);
+
   const user = getUserData();
 
   const { locationId, menuId } = useParams();
@@ -20,6 +22,10 @@ const DishItem = (props) => {
         dish: props.dish,
       })
     );
+      setActivated(true);
+      setTimeout(() => {
+        setActivated(false);
+      }, 250);
   };
 
   const onEditHandler = (event) => {
@@ -37,7 +43,7 @@ const DishItem = (props) => {
       <p>{props.description}</p>
       <p>{props.price}€</p>
       <p></p>
-      {user && <React.Fragment><Button onClick={onOrderHandler}>Order</Button><br /></React.Fragment>}
+      {user && <React.Fragment><Button activated={activated} onClick={onOrderHandler}>Order</Button><br /></React.Fragment>}
       {user?.role === "Admin" && (
         <React.Fragment>
           <Button onClick={onEditHandler}>Edit</Button>
