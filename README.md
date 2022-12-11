@@ -423,6 +423,40 @@ Example Response Body:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
+#### Example
+Example Request: GET /locations/633f0d09798d5c219b3d1d20/menus/634344dd3f4278ff0e6a1394/dishes
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+[
+    {
+        "_id": "634347a9b7909c7f9b626d43",
+        "name": "Sushi 1",
+        "description": "Some fish and some rice",
+        "price": {
+            "$numberDecimal": "3.11"
+        },
+        "menu": "634344dd3f4278ff0e6a1394",
+        "__v": 0,
+        "image": "https://media.healthyfood.com/wp-content/uploads/2017/03/Sushi_in_10_steps.jpg"
+    },
+    {
+        "_id": "634347b5b7909c7f9b626d45",
+        "name": "Sushi 2",
+        "description": "Cucumber and rice",
+        "price": {
+            "$numberDecimal": "2.09"
+        },
+        "menu": "634344dd3f4278ff0e6a1394",
+        "__v": 0,
+        "image": "https://www.mashed.com/img/gallery/easy-cucumber-roll-recipe/l-intro-1634129609.jpg"
+    }
+]
+```
+
 ### Add a dish to a certain menu of a certain location
 | Dishes | /locations/{locationId}/menus/{menuId}/dishes |
 |-------------|-------------|
@@ -431,6 +465,41 @@ Example Response Body:
 | Parameters | Name (string), Image (string), Description (string), Price (string) |
 | HTTP responses | 200 - success, 400 - wrong arguments, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, admin |
+
+#### Example
+Example Request: POST /locations/633f0d09798d5c219b3d1d20/menus/634344dd3f4278ff0e6a1394/dishes
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Request Body:
+```
+{
+    "name": "Chicken",
+    "image": "https://i.imgur.com/JeZT04a.png",
+    "description": "Very tasty chicken",
+    "price": 3.09
+}
+```
+
+Example Response: 201 Created
+
+Example Response Body: 
+```
+{
+    "name": "Chicken",
+    "image": "https://i.imgur.com/JeZT04a.png",
+    "description": "Very tasty chicken",
+    "price": {
+        "$numberDecimal": "3.09"
+    },
+    "menu": "634344dd3f4278ff0e6a1394",
+    "_id": "639650d753c381f5ed3def2f",
+    "__v": 0
+}
+```
 
 ### Get a dish from a certain menu of a certain location
 | Dishes | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
@@ -441,6 +510,27 @@ Example Response Body:
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
 
+#### Example
+Example Request: GET /locations/633f0d09798d5c219b3d1d20/menus/63964e49a2d927f3f270eed2/dishes/639650d753c381f5ed3def2f
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "_id": "639650d753c381f5ed3def2f",
+    "name": "Chicken",
+    "image": "https://i.imgur.com/JeZT04a.png",
+    "description": "Very tasty chicken",
+    "price": {
+        "$numberDecimal": "3.09"
+    },
+    "menu": "634344dd3f4278ff0e6a1394",
+    "__v": 0
+}
+```
+
 ### Delete a dish from a certain menu of a certain location
 | Dishes | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 |-------------|-------------|
@@ -450,6 +540,25 @@ Example Response Body:
 | HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
 
+#### Example
+Example Request: DELETE /locations/633f0d09798d5c219b3d1d20/menus/63964e49a2d927f3f270eed2/dishes/639650d753c381f5ed3def2f
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "acknowledged": true,
+    "deletedCount": 1
+}
+```
+
 ### Update a dish of a certain menu of a certain location
 | Dishes | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 |-------------|-------------|
@@ -458,6 +567,41 @@ Example Response Body:
 | Parameters | Name (string), Image (string), Description (string), Price (string) |
 | HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
+
+#### Example
+Example Request: PATCH /locations/633f0d09798d5c219b3d1d20/menus/63964e49a2d927f3f270eed2/dishes/639650d753c381f5ed3def2f
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Request Body:
+```
+{
+    "name": "Chicken",
+    "image": "https://i.imgur.com/JeZT04a.png",
+    "description": "Very tasty chicken",
+    "price": 3.09
+}
+```
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "_id": "639650d753c381f5ed3def2f",
+    "name": "Chicken",
+    "image": "https://i.imgur.com/JeZT04a.png",
+    "description": "Very tasty chicken",
+    "price": {
+        "$numberDecimal": "3.09"
+    },
+    "menu": "634344dd3f4278ff0e6a1394",
+    "__v": 0
+}
+```
 
 ## Orders
 
@@ -470,6 +614,98 @@ Example Response Body:
 | HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, same user whose order it is |
 
+#### Example
+Example Request: GET /users/6362c5992336780314bc384a/orders/
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+[
+    {
+        "_id": "63717c2829f112e502e8875c",
+        "user": {
+            "_id": "6362c5992336780314bc384a",
+            "email": "admin@gmail.com",
+            "username": "admin",
+            "password": "$2b$10$kRq.rE9IfROwqusl0OALPuBNiM.AKT.LDi.sZuKE/5yHISU4hqUEm",
+            "joinDate": "2022-11-02T19:31:37.001Z",
+            "lastJoinDate": "2022-12-11T21:54:18.179Z",
+            "role": "Admin",
+            "__v": 0
+        },
+        "dishes": [
+            {
+                "_id": "634347a9b7909c7f9b626d43",
+                "name": "Sushi 1",
+                "description": "Some fish and some rice",
+                "price": {
+                    "$numberDecimal": "3.11"
+                },
+                "menu": "634344dd3f4278ff0e6a1394",
+                "__v": 0,
+                "image": "https://media.healthyfood.com/wp-content/uploads/2017/03/Sushi_in_10_steps.jpg"
+            },
+            {
+                "_id": "634347b5b7909c7f9b626d45",
+                "name": "Sushi 2",
+                "description": "Cucumber and rice",
+                "price": {
+                    "$numberDecimal": "2.09"
+                },
+                "menu": "634344dd3f4278ff0e6a1394",
+                "__v": 0,
+                "image": "https://www.mashed.com/img/gallery/easy-cucumber-roll-recipe/l-intro-1634129609.jpg"
+            }
+        ],
+        "paid": false,
+        "completed": false,
+        "__v": 0
+    },
+    {
+        "_id": "63717d9fbcf436b9c16dcfec",
+        "user": {
+            "_id": "6362c5992336780314bc384a",
+            "email": "admin@gmail.com",
+            "username": "admin",
+            "password": "$2b$10$kRq.rE9IfROwqusl0OALPuBNiM.AKT.LDi.sZuKE/5yHISU4hqUEm",
+            "joinDate": "2022-11-02T19:31:37.001Z",
+            "lastJoinDate": "2022-12-11T21:54:18.179Z",
+            "role": "Admin",
+            "__v": 0
+        },
+        "dishes": [
+            {
+                "_id": "634347a9b7909c7f9b626d43",
+                "name": "Sushi 1",
+                "description": "Some fish and some rice",
+                "price": {
+                    "$numberDecimal": "3.11"
+                },
+                "menu": "634344dd3f4278ff0e6a1394",
+                "__v": 0,
+                "image": "https://media.healthyfood.com/wp-content/uploads/2017/03/Sushi_in_10_steps.jpg"
+            },
+            {
+                "_id": "634347b5b7909c7f9b626d45",
+                "name": "Sushi 2",
+                "description": "Cucumber and rice",
+                "price": {
+                    "$numberDecimal": "2.09"
+                },
+                "menu": "634344dd3f4278ff0e6a1394",
+                "__v": 0,
+                "image": "https://www.mashed.com/img/gallery/easy-cucumber-roll-recipe/l-intro-1634129609.jpg"
+            }
+        ],
+        "paid": false,
+        "completed": false,
+        "__v": 0
+    }
+]
+```
+
 ### Add a new order for a user
 | Orders | /users/:userId/orders |
 |-------------|-------------|
@@ -478,6 +714,40 @@ Example Response Body:
 | Parameters | Dishes (Array of Dish), Paid (Boolean), Completed (Boolean) |
 | HTTP responses | 201 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, same user whose order it is |
+
+#### Example
+Example Request: POST /users/6362c5992336780314bc384a/orders/
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Request Body:
+```
+{
+    "dishes": ["634347a9b7909c7f9b626d43", "634347b5b7909c7f9b626d45"],
+    "paid": false,
+    "completed": true
+}
+```
+
+Example Response: 201 Created
+
+Example Response Body: 
+```
+{
+    "user": "6362c5992336780314bc384a",
+    "dishes": [
+        "634347a9b7909c7f9b626d43",
+        "634347b5b7909c7f9b626d45"
+    ],
+    "paid": false,
+    "completed": false,
+    "_id": "6396520653c381f5ed3def46",
+    "__v": 0
+}
+```
 
 ### Get an order of a user
 | Orders | /users/:userId/orders/{orderId} |
@@ -488,6 +758,31 @@ Example Response Body:
 | HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, same user whose order it is |
 
+#### Example
+Example Request: GET /users/6362c5992336780314bc384a/orders/6396520653c381f5ed3def46
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "_id": "639650d753c381f5ed3def2f",
+    "name": "Chicken",
+    "image": "https://i.imgur.com/JeZT04a.png",
+    "description": "Very tasty chicken",
+    "price": {
+        "$numberDecimal": "3.09"
+    },
+    "menu": "634344dd3f4278ff0e6a1394",
+    "__v": 0
+}
+```
+
 ### Delete an order of a user
 | Orders | /users/:userId/orders/{orderId} |
 |-------------|-------------|
@@ -497,6 +792,25 @@ Example Response Body:
 | HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, same user whose order it is |
 
+#### Example
+Example Request: DELETE /users/6362c5992336780314bc384a/orders/6396520653c381f5ed3def46
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "acknowledged": true,
+    "deletedCount": 1
+}
+```
+
 ### Update an order of a user
 | Orders | /users/:userId/orders/{orderId} |
 |-------------|-------------|
@@ -505,6 +819,40 @@ Example Response Body:
 | Parameters | Dishes (Array of Dish), Paid (Boolean), Completed (Boolean) |
 | HTTP responses | 200 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, same user whose order it is |
+
+#### Example
+Example Request: PATCH /users/6362c5992336780314bc384a/orders/6396520653c381f5ed3def46
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Request Body:
+```
+{
+    "dishes": ["634347a9b7909c7f9b626d43", "634347b5b7909c7f9b626d45"],
+    "paid": false,
+    "completed": true
+}
+```
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "user": "6362c5992336780314bc384a",
+    "dishes": [
+        "634347a9b7909c7f9b626d43",
+        "634347b5b7909c7f9b626d45"
+    ],
+    "paid": false,
+    "completed": false,
+    "_id": "6396520653c381f5ed3def46",
+    "__v": 0
+}
+```
 
 ## Users
 
@@ -517,6 +865,45 @@ Example Response Body:
 | HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
 
+#### Example
+Example Request: GET /users/
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+[
+    {
+        "_id": "6362b9f231cd11f1aec6d9c2",
+        "email": "user@gmail.com",
+        "username": "user",
+        "joinDate": "2022-11-02T18:41:54.869Z",
+        "lastJoinDate": "2022-12-11T21:30:23.323Z",
+        "role": "User",
+        "__v": 0
+    },
+    {
+        "_id": "6362c5992336780314bc384a",
+        "email": "admin@gmail.com",
+        "username": "admin",
+        "joinDate": "2022-11-02T19:31:37.001Z",
+        "lastJoinDate": "2022-12-11T22:16:00.943Z",
+        "role": "Admin",
+        "__v": 0
+    },
+    {
+        "_id": "6390a72ce8510a833d6d9292",
+        "email": "newtest@gmail.com",
+        "username": "newtest",
+        "joinDate": "2022-12-07T14:46:04.161Z",
+        "lastJoinDate": "2022-12-07T14:46:04.161Z",
+        "role": "User",
+        "__v": 0
+    }
+]
+```
+
 ### Register
 | Users | /users/ |
 |-------------|-------------|
@@ -526,6 +913,29 @@ Example Response Body:
 | HTTP responses | 201 - success, 400 - wrong parameters |
 | Requires authentication | No |
 
+#### Example
+Example Request: POST /users/
+
+Example Request Body:
+```
+{
+    "email": "newtest1@gmail.com",
+    "username": "newtest1",
+    "password": "asdasd"
+}
+```
+
+Example Response: 201 Created
+
+Example Response Body: 
+```
+{
+    "message": "User created successfully",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5ld3Rlc3QxQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoibmV3dGVzdDEiLCJyb2xlIjoiVXNlciIsImlhdCI6MTY3MDc5NzA0MywiZXhwIjoxNjcwNzk3NjQzfQ.d7zC4pNCAauOkVrk2g_xdP50YOWj9vtrC0mM6Rlthb8",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5ld3Rlc3QxQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoibmV3dGVzdDEiLCJyb2xlIjoiVXNlciIsImlhdCI6MTY3MDc5NzA0M30.9-fQwPNIHRKOdf2ABKSpCXFwBUJ96nV4AdWOpRUJk2Q"
+}
+```
+
 ### Update user role
 | Users | /users/{userId}/roles |
 |-------------|-------------|
@@ -534,6 +944,34 @@ Example Response Body:
 | Parameters | Role (string (User or Admin)) |
 | HTTP responses | 200 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
+
+#### Example
+Example Request: PATCH /users/6362c5992336780314bc384a/roles/
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Request Body:
+```
+{
+    "role": "Admin,
+}
+```
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "email": "admin@gmail.com",
+    "joinDate": "2022-11-02T19:31:37.001Z",
+    "lastJoinDate": "2022-12-11T22:16:00.943Z",
+    "role": "Admin",
+    "username": "admin"
+}
+```
 
 ## Tokens
 
@@ -546,6 +984,28 @@ Example Response Body:
 | HTTP responses | 201 - success, 400 - wrong parameters, 404 - not found |
 | Requires authentication | No |
 
+#### Example
+Example Request: POST /tokens/
+
+Example Request Body:
+```
+{
+    "email": "admin@gmail.com",
+    "password": "asdasd"
+}
+```
+
+Example Response: 201 Created
+
+Example Response Body: 
+```
+{
+    "message": "Logged in successfully",
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTc2MTIsImV4cCI6MTY3MDc5ODIxMn0.K5qfZ-YepEOlbeF0C1VMdUOhm2I2ZtSPADfG8H4U728",
+    "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTc2MTJ9.-Gk1IWV-e47aiZVXSKjXQKJjUBFdN9KWUoJMiV1zlpU"
+}
+```
+
 ### Refresh token
 | Tokens | /tokens/ |
 |-------------|-------------|
@@ -555,6 +1015,30 @@ Example Response Body:
 | HTTP responses | 201 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, any user |
 
+#### Example
+Example Request: PUT /tokens/
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Request Body:
+```
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTc2MTJ9.-Gk1IWV-e47aiZVXSKjXQKJjUBFdN9KWUoJMiV1zlpU"
+}
+```
+
+Example Response: 201 Created
+
+Example Response Body: 
+```
+{
+    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTc3MDgsImV4cCI6MTY3MDc5ODMwOH0.VG-e-rKcuooBUeQIsaBWoi0fmrZMbr5Pb7ldrp5Phis"
+}
+```
+
 ### Logout
 | Tokens | /tokens/{token}/users/{userId} |
 |-------------|-------------|
@@ -563,6 +1047,25 @@ Example Response Body:
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | Yes, any user |
+
+#### Example
+Example Request: DELETE /tokens/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJAZ21haWwuY29tIiwidXNlcm5hbWUiOiJ1c2VyIiwicm9sZSI6IkFkbWluIiwiaWF0IjoxNjY3NDE3MzIxfQ.d4-STUFqPnLctJsA7qovMGuby1-rsOj6-TAOU5XnOvU/users/6362c5992336780314bc384a
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+{
+    "acknowledged": true,
+    "deletedCount": 1
+}
+```
 
 ## User Ids
 
@@ -574,3 +1077,18 @@ Example Response Body:
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 400 - wrong parameters, 404 - not found |
 | Requires authentication | Yes, user of which getting the id |
+
+#### Example
+Example Request: GET /users/admin/userIds
+
+Example Request Headers: 
+```
+Bearer Token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYWRtaW4iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2NzA3OTQyMjcsImV4cCI6MTY3MDc5NDgyN30.x5k604ShaaU1ODtH0OTQ7y3mB41HZX_pXC0L5RObTjw
+```
+
+Example Response: 200 OK
+
+Example Response Body: 
+```
+"6362c5992336780314bc384a"
+```
