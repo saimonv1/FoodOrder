@@ -53,7 +53,7 @@ Sistemos administratorius:
 | URL | /locations/ |
 | Method | POST |
 | Parameters | Country (string), City (string), Address (string) |
-| HTTP responses | 201 - success, 400 - wrong parameters |
+| HTTP responses | 201 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, admin |
 
 ### Get a location
@@ -71,7 +71,7 @@ Sistemos administratorius:
 | URL | /locations/{locationId} |
 | Method | DELETE |
 | Parameters | <!-- --> |
-| HTTP responses | 200 - success, 404 - not found |
+| HTTP responses | 200 - success, 404 - not found, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, admin |
 
 ### Update a location
@@ -80,7 +80,7 @@ Sistemos administratorius:
 | URL | /locations/{locationId} |
 | Method | PATCH |
 | Parameters | Country (string), City (string), Address (string) |
-| HTTP responses | 200 - success, 400 - wrong parameters 404 - not found |
+| HTTP responses | 200 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
 
 ## Menus
@@ -100,7 +100,7 @@ Sistemos administratorius:
 | URL | /locations/{locationId}/menus/ |
 | Method | POST |
 | Parameters | Name (string), Image (string), Description (string) |
-| HTTP responses | 201 - success, 400 - wrong parameters |
+| HTTP responses | 201 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, admin |
 
 ### Get a single menu of a certain location
@@ -118,7 +118,7 @@ Sistemos administratorius:
 | URL | /locations/{locationId}/menus/{menuId} |
 | Method | DELETE |
 | Parameters | <!-- --> |
-| HTTP responses | 200 - success, 404 - not found |
+| HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
 
 ### Update a menu of a certain location
@@ -127,7 +127,7 @@ Sistemos administratorius:
 | URL | /locations/{locationId}/menus/{menuId} |
 | Method | PATCH |
 | Parameters | Name (string), Image (string), Description (string) |
-| HTTP responses | 200 - success, 400 - wrong parameters, 404 - not found |
+| HTTP responses | 200 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
 
 ## Dishes
@@ -147,7 +147,7 @@ Sistemos administratorius:
 | URL | /locations/{locationId}/menus/{menuId}/dishes |
 | Method | POST |
 | Parameters | Name (string), Image (string), Description (string), Price (string) |
-| HTTP responses | 200 - success, 400 - wrong arguments |
+| HTTP responses | 200 - success, 400 - wrong arguments, 401 - not authorized, 403 - forbidden |
 | Requires authentication | Yes, admin |
 
 ### Get a dish from a certain menu of a certain location
@@ -165,7 +165,7 @@ Sistemos administratorius:
 | URL | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 | Method | DELETE |
 | Parameters | <!-- --> |
-| HTTP responses | 200 - success, 404 - not found |
+| HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
 
 ### Update a dish of a certain menu of a certain location
@@ -174,8 +174,121 @@ Sistemos administratorius:
 | URL | /locations/{locationId}/menus/{menuId}/dishes/{dishId} |
 | Method | PATCH |
 | Parameters | Name (string), Image (string), Description (string), Price (string) |
-| HTTP responses | 200 - success, 404 - not found |
+| HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden, 404 - not found |
 | Requires authentication | Yes, admin |
 
 ## Orders
 
+### Get all orders of a user
+| Orders | /users/:userId/orders |
+|-------------|-------------|
+| URL | /users/:userId/orders |
+| Method | GET |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden, 404 - not found |
+| Requires authentication | Yes, same user whose order it is |
+
+### Add a new order for a user
+| Orders | /users/:userId/orders |
+|-------------|-------------|
+| URL | /users/:userId/orders |
+| Method | POST |
+| Parameters | Dishes (Array of Dish), Paid (Boolean), Completed (Boolean) |
+| HTTP responses | 201 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden |
+| Requires authentication | Yes, same user whose order it is |
+
+### Get an order of a user
+| Orders | /users/:userId/orders/{orderId} |
+|-------------|-------------|
+| URL | /users/:userId/orders/{orderId}} |
+| Method | GET |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden |
+| Requires authentication | Yes, same user whose order it is |
+
+### Delete an order of a user
+| Orders | /users/:userId/orders/{orderId} |
+|-------------|-------------|
+| URL | /users/:userId/orders/{orderId} |
+| Method | DELETE |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden |
+| Requires authentication | Yes, same user whose order it is |
+
+### Update an order of a user
+| Orders | /users/:userId/orders/{orderId} |
+|-------------|-------------|
+| URL | /users/:userId/orders/{orderId} |
+| Method | PATCH |
+| Parameters | Dishes (Array of Dish), Paid (Boolean), Completed (Boolean) |
+| HTTP responses | 200 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden |
+| Requires authentication | Yes, same user whose order it is |
+
+## Users
+
+### Get all users
+| Users | /users/ |
+|-------------|-------------|
+| URL | /users/ |
+| Method | GET |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 401 - not authorized, 403 - forbidden, 404 - not found |
+| Requires authentication | Yes, admin |
+
+### Register
+| Users | /users/ |
+|-------------|-------------|
+| URL | /users/ |
+| Method | POST |
+| Parameters | Email (string), Username (string), Password (string) |
+| HTTP responses | 201 - success, 400 - wrong parameters |
+| Requires authentication | No |
+
+### Update user role
+| Users | /users/{userId}/roles |
+|-------------|-------------|
+| URL | /users/{userId}/roles |
+| Method | PATCH |
+| Parameters | Role (string (User or Admin)) |
+| HTTP responses | 200 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden, 404 - not found |
+| Requires authentication | Yes, admin |
+
+## Tokens
+
+### Login
+| Tokens | /tokens/ |
+|-------------|-------------|
+| URL | /tokens/ |
+| Method | POST |
+| Parameters | Email (string), Password (string) |
+| HTTP responses | 201 - success, 400 - wrong parameters, 404 - not found |
+| Requires authentication | No |
+
+### Refresh token
+| Tokens | /tokens/ |
+|-------------|-------------|
+| URL | /tokens/ |
+| Method | PUT |
+| Parameters | Token (String) |
+| HTTP responses | 201 - success, 400 - wrong parameters, 401 - not authorized, 403 - forbidden, 404 - not found |
+| Requires authentication | Yes, any user |
+
+### Logout
+| Tokens | /tokens/{token}/users/{userId} |
+|-------------|-------------|
+| URL | /tokens/{token}/users/{userId} |
+| Method | DELETE |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 404 - not found |
+| Requires authentication | Yes, any user |
+
+## User Ids
+
+### Get user id by username
+| User Ids | users/{userName}/userIds |
+|-------------|-------------|
+| URL | users/{userName}/userIds |
+| Method | GET |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 400 - wrong parameters, 404 - not found |
+| Requires authentication | Yes, user of which getting the id |
