@@ -33,3 +33,6 @@ Sistemos administratorius:
 9.  Kaip sistemos administratorius, noriu prie meniu pridėti naują patiekalą.
 10.  Kaip sistemos administratorius, noriu redaguoti patiekalą.
 11.  Kaip sistemos administratorius, noriu iš meniu pašalinti patiekalą.
+
+| Content Cell  | Content Cell  |
+| Content Cell  | Content Cell  |
