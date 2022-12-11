@@ -97,7 +97,7 @@
 
   .button {
     text-align: center;
-    width: 100%;
+    width: calc(100% - 6rem);
     transition: all 0.05s linear;
     border-bottom: 4px solid transparent;
     border-radius: 0px;
