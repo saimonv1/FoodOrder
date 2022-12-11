@@ -49,7 +49,7 @@ Sistemos administratorius:
 | Example URL | GET /locations/ |
 | Example Body | <!-- --> |
 | Example Response | 200 OK |
-| Example Response Body | [
+| Example Response Body | \[
     {
         "_id": "633f0d09798d5c219b3d1d20",
         "country": "Germany",
@@ -78,7 +78,7 @@ Sistemos administratorius:
         "address": "Best",
         "__v": 0
     }
-] |
+\] |
 
 ### Add a new location
 | Locations | /locations/ |
