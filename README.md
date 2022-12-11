@@ -1,5 +1,7 @@
 # FoodOrder
 
+## Sistemos paskirtis
+
 Aplikacija skirta maisto užsakymui. Kiekvienas asmuo prisijungęs į internetinę svetainę gali peržiūrėti kiekvienos lokacijos meniu. Jei vartotojas yra prisijungęs, jis gali iš patiekalų sudaryti užsakymą ir jį užsisakyti (patvirtinti). Sistemos administratorius gali peržiūrėti varototojus, keisti jų roles, keisti lokacijas, jų turinį, keisti kiekvieno meniu turinį.
 
 ## Funkciniai reikalavimai
@@ -34,10 +36,16 @@ Sistemos administratorius:
 10.  Kaip sistemos administratorius, noriu redaguoti patiekalą.
 11.  Kaip sistemos administratorius, noriu iš meniu pašalinti patiekalą.
 
-# API
+
+## Sistemos architektūra
+
+![Deployment diagram](https://i.imgur.com/JeZT04a.png)
+
+## API
 
 <details>
 <summary>API</summary>
+
 ## Locations
 
 ### Get all locations
