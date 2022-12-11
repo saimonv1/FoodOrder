@@ -46,3 +46,86 @@ Sistemos administratorius:
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
+
+| <!-- -->    | <!-- -->    |
+|-------------|-------------|
+| URL | /locations/ |
+| Method | POST |
+| Description | Add a new location |
+| Parameters | Country (string), City (string), Address (string) |
+| HTTP responses | 201 - success, 400 - wrong parameters |
+| Requires authentication | Yes, admin |
+
+| <!-- -->    | <!-- -->    |
+|-------------|-------------|
+| URL | /locations/{locationId} |
+| Method | GET |
+| Description | Get a location |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 404 - not found |
+| Requires authentication | No |
+
+| <!-- -->    | <!-- -->    |
+|-------------|-------------|
+| URL | /locations/{locationId} |
+| Method | DELETE |
+| Description | Delete a location |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 404 - not found |
+| Requires authentication | Yes, admin |
+
+| <!-- -->    | <!-- -->    |
+|-------------|-------------|
+| URL | /locations/ |
+| Method | PATCH |
+| Description | Update a location |
+| Parameters | Country (string), City (string), Address (string) |
+| HTTP responses | 200 - success, 400 - wrong parameters 404 - not found |
+| Requires authentication | Yes, admin |
+
+## Menus
+
+| <!-- -->    | <!-- -->    |
+|-------------|-------------|
+| URL | /locations/{locationId}/menus/ |
+| Method | GET |
+| Description | Get all menus of a certain location |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 404 - not found |
+| Requires authentication | No |
+
+| <!-- -->    | <!-- -->    |
+|-------------|-------------|
+| URL | /locations/{locationId}/menus/ |
+| Method | POST |
+| Description | Add a new menu to a location |
+| Parameters | Name (string), Image (string), Description (string) |
+| HTTP responses | 201 - success, 400 - wrong parameters |
+| Requires authentication | Yes, admin |
+
+| <!-- -->    | <!-- -->    |
+|-------------|-------------|
+| URL | /locations/{locationId}/menus/{menuId} |
+| Method | GET |
+| Description | Get a single menu of a certain location |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 404 - not found |
+| Requires authentication | No |
+
+| <!-- -->    | <!-- -->    |
+|-------------|-------------|
+| URL | /locations/{locationId}/menus/{menuId} |
+| Method | DELETE |
+| Description | Delete a menu of a certain location |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 404 - not found |
+| Requires authentication | Yes, admin |
+
+| <!-- -->    | <!-- -->    |
+|-------------|-------------|
+| URL | /locations/{locationId}/menus/{menuId} |
+| Method | PATCH |
+| Description | Update a menu of a certain location |
+| Parameters | Name (string), Image (string), Description (string) |
+| HTTP responses | 200 - success, 400 - wrong parameters, 404 - not found |
+| Requires authentication | No |
