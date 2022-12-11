@@ -46,6 +46,39 @@ Sistemos administratorius:
 | Parameters | <!-- --> |
 | HTTP responses | 200 - success, 404 - not found |
 | Requires authentication | No |
+| Example URL | GET /locations/ |
+| Example Body | <!-- --> |
+| Example Response | 200 OK |
+| Example Response Body | [
+    {
+        "_id": "633f0d09798d5c219b3d1d20",
+        "country": "Germany",
+        "city": "Frankfurt",
+        "address": "Brzzz st. 100",
+        "__v": 0
+    },
+    {
+        "_id": "634341e7772aea9d34b42be2",
+        "country": "Lithuania",
+        "city": "Vilnius",
+        "address": "Vilnius st. 39",
+        "__v": 0
+    },
+    {
+        "_id": "63434755b7909c7f9b626d3a",
+        "country": "USA",
+        "city": "Washington, DC",
+        "address": "Biggest st. 1",
+        "__v": 0
+    },
+    {
+        "_id": "6396088c57fbf7e71d3172d7",
+        "country": "Good",
+        "city": "Better",
+        "address": "Best",
+        "__v": 0
+    }
+] |
 
 ### Add a new location
 | Locations | /locations/ |
