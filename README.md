@@ -36,7 +36,13 @@ Sistemos administratorius:
 
 # API
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| Content Cell  | Content Cell  |
-| Content Cell  | Content Cell  |
+## Locations
+
+| <!-- -->    | <!-- -->    |
+|-------------|-------------|
+| URL | /locations/ |
+| Method | GET |
+| Description | Get all locations |
+| Parameters | <!-- --> |
+| HTTP responses | 200 - success, 404 - not found |
+| Requires authentication | No |
